@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36" version="24.8.4">
   <diagram name="Page-1" id="ve7oVXkOOz5Z0k4UL4DX">
-    <mxGraphModel dx="1820" dy="1114" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="826" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1062" dy="650" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="826" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -49,7 +49,7 @@
             <mxPoint x="500" y="790" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="AOm2OtpAVyAGJr31sBE9-31" value="&amp;lt;&amp;lt;implements&amp;gt;&amp;gt; Customizable, Pricable" style="rounded=0;whiteSpace=wrap;html=1;align=left;dashed=1;spacingTop=0;spacing=4;spacingBottom=0;fillColor=#d5e8d4;gradientColor=#97d077;strokeColor=#82b366;" vertex="1" parent="1">
+        <mxCell id="AOm2OtpAVyAGJr31sBE9-31" value="&amp;lt;&amp;lt;implements&amp;gt;&amp;gt; Pricable" style="rounded=0;whiteSpace=wrap;html=1;align=left;dashed=1;spacingTop=0;spacing=4;spacingBottom=0;fillColor=#d5e8d4;gradientColor=#97d077;strokeColor=#82b366;" vertex="1" parent="1">
           <mxGeometry x="360" y="690" width="280" height="60" as="geometry" />
         </mxCell>
         <mxCell id="AOm2OtpAVyAGJr31sBE9-32" value="Topping" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;dashed=1;fontFamily=Verdana;fillColor=#f0a30a;strokeColor=#BD7000;fontColor=#000000;" vertex="1" parent="1">
@@ -117,18 +117,10 @@
         <mxCell id="AOm2OtpAVyAGJr31sBE9-58" value="&amp;lt;&amp;lt;implements&amp;gt;&amp;gt;&amp;nbsp; Pricable" style="rounded=0;whiteSpace=wrap;html=1;align=left;dashed=1;spacingTop=0;spacing=4;spacingBottom=0;fillColor=#d5e8d4;gradientColor=#97d077;strokeColor=#82b366;" vertex="1" parent="1">
           <mxGeometry x="1000" y="520" width="280" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="AOm2OtpAVyAGJr31sBE9-59" value="&amp;lt;&amp;lt;interface&amp;gt;&amp;gt;&lt;div&gt;Customizable&lt;/div&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;dashed=1;fontFamily=Verdana;fillColor=#f0a30a;strokeColor=#BD7000;fontColor=#000000;" vertex="1" parent="1">
-          <mxGeometry x="20" y="90" width="280" height="30" as="geometry">
-            <mxRectangle x="80" y="40" width="70" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
         <mxCell id="AOm2OtpAVyAGJr31sBE9-64" value="&amp;lt;&amp;lt;interface&amp;gt;&amp;gt;&lt;div&gt;Pricable&lt;/div&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;dashed=1;fontFamily=Verdana;fillColor=#f0a30a;strokeColor=#BD7000;fontColor=#000000;" vertex="1" parent="1">
           <mxGeometry x="340" y="90" width="280" height="30" as="geometry">
             <mxRectangle x="80" y="40" width="70" height="30" as="alternateBounds" />
           </mxGeometry>
-        </mxCell>
-        <mxCell id="AOm2OtpAVyAGJr31sBE9-70" value="&lt;br&gt;&lt;div&gt;+ addTopping(): void&lt;/div&gt;&lt;div&gt;+ removeTopping(): void&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;dashed=1;spacingTop=0;spacing=4;spacingBottom=0;fillColor=#ffcd28;gradientColor=#ffa500;strokeColor=#d79b00;" vertex="1" parent="1">
-          <mxGeometry x="20" y="120" width="280" height="60" as="geometry" />
         </mxCell>
         <mxCell id="AOm2OtpAVyAGJr31sBE9-71" value="&lt;br&gt;&lt;div&gt;+calculatePrice(): double&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;dashed=1;spacingTop=0;spacing=4;spacingBottom=0;fillColor=#ffcd28;gradientColor=#ffa500;strokeColor=#d79b00;gradientDirection=south;" vertex="1" parent="1">
           <mxGeometry x="340" y="120" width="280" height="60" as="geometry" />
@@ -159,7 +151,7 @@
         <mxCell id="AOm2OtpAVyAGJr31sBE9-82" value="&amp;lt;&amp;lt;depends on&amp;gt;&amp;gt;&amp;nbsp; Order" style="rounded=0;whiteSpace=wrap;html=1;align=left;dashed=1;spacingTop=0;spacing=4;spacingBottom=0;fillColor=#d5e8d4;gradientColor=#97d077;strokeColor=#82b366;" vertex="1" parent="1">
           <mxGeometry x="959" y="810" width="280" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="AOm2OtpAVyAGJr31sBE9-83" value="-receiptDate: dateTime&amp;nbsp;" style="text;strokeColor=#666666;fillColor=#f5f5f5;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;rounded=0;fontColor=#333333;" vertex="1" parent="1">
+        <mxCell id="AOm2OtpAVyAGJr31sBE9-83" value="-receiptDate: DateTime&amp;nbsp;" style="text;strokeColor=#666666;fillColor=#f5f5f5;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;rounded=0;fontColor=#333333;" vertex="1" parent="1">
           <mxGeometry x="720" y="220" width="280" height="30" as="geometry" />
         </mxCell>
         <mxCell id="AOm2OtpAVyAGJr31sBE9-84" value="- basePrice: double" style="text;strokeColor=#666666;fillColor=#f5f5f5;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;rounded=0;fontColor=#333333;" vertex="1" parent="1">
