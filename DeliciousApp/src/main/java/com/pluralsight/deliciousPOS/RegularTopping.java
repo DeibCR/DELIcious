@@ -1,7 +1,19 @@
 package com.pluralsight.deliciousPOS;
 
-public class RegularTopping extends Topping{
-    public RegularTopping(String name, double price, int quantity) {
-        super(name, price, quantity);
+public class RegularTopping implements Topping {
+    private final R_Topping type;
+
+    public RegularTopping(R_Topping type) {
+        this.type = type;
+    }
+
+    @Override
+    public String getName() {
+        return type.name();
+    }
+
+    @Override
+    public double calculatePrice(SandwichSize size) {
+        return 0.0;
     }
 }

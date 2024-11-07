@@ -1,21 +1,19 @@
 package com.pluralsight.deliciousPOS;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Sandwich implements Priceable {
-    private String size;
+    private SandwichSize size;
     private BreadType breadType;
-    private ArrayList<Topping> toppings;
     private boolean isToasted;
-    private double basePrice;
+    private List<Topping> toppings;
 
-    public Sandwich(String size, BreadType breadType, ArrayList<Topping> toppings, boolean isToasted, double basePrice) {
+    public Sandwich(SandwichSize size, BreadType breadType,  boolean isToasted) {
         this.size = size;
         this.breadType = breadType;
-        this.toppings = toppings;
         this.isToasted = isToasted;
-        this.basePrice = basePrice;
-        this.toppings=new ArrayList<>();
+        this.toppings = new ArrayList<>();
     }
 
     public void addTopping(Topping topping) {
@@ -27,21 +25,25 @@ public class Sandwich implements Priceable {
         toppings.remove(topping);
     }
 
+    private double getBasePrice(){
+        return breadType.getPrice(size);
+    }
+
 
     @Override
     public double calculatePrice() {
-        double totalPrice= basePrice;
+        double totalPrice= getBasePrice();
         for (Topping topping: toppings){
-            totalPrice +=topping.calculatePrice();
+            totalPrice +=topping.calculatePrice(size);
         }
         return totalPrice;
     }
 
-    public String getSize() {
+    public SandwichSize getSize() {
         return size;
     }
 
-    public void setSize(String size) {
+    public void setSize(SandwichSize size) {
         this.size = size;
     }
 
@@ -53,19 +55,16 @@ public class Sandwich implements Priceable {
         this.breadType = breadType;
     }
 
+    public List<Topping> getToppings() {
+        return toppings;
+    }
+
+
     public boolean isToasted() {
         return isToasted;
     }
 
     public void setToasted(boolean toasted) {
         isToasted = toasted;
-    }
-
-    public double getBasePrice() {
-        return basePrice;
-    }
-
-    public void setBasePrice(double basePrice) {
-        this.basePrice = basePrice;
     }
 }

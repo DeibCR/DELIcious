@@ -1,20 +1,38 @@
 package com.pluralsight.deliciousPOS;
 
-public class PremiumTopping extends Topping{
-    private boolean isExtra;
+public class PremiumTopping implements Topping {
+    private final Meat meatType;
+    private final Cheese cheeseType;
+    private final boolean isExtra;
 
-    public PremiumTopping(String name, double price, int quantity) {
-        super(name, price, quantity);
-        this.isExtra= isExtra;
+
+    //Constructor made to create topping objects that are meat
+    public PremiumTopping(Meat meatType,  boolean isExtra) {
+        this.meatType = meatType;
+        this.cheeseType = null;
+        this.isExtra = isExtra;
     }
 
-    public boolean isExtra() {
-        return isExtra;
+
+    //Constructor made to create topping objects that are cheese
+    public PremiumTopping(Cheese cheeseType, boolean isExtra) {
+        this.meatType = null;
+        this.cheeseType = cheeseType;
+        this.isExtra = isExtra;
     }
 
     @Override
-    public double calculatePrice() {
+    public String getName() {
+        return (meatType != null) ? meatType.name() : (cheeseType != null) ? cheeseType.name() : "";
+    }
 
-        return super.calculatePrice();
+    @Override
+    public double calculatePrice(SandwichSize size) {
+        if (meatType!=null){
+            return meatType.getPrice(size,isExtra);
+        } else if (cheeseType!=null) {
+            return cheeseType.getPrice(size,isExtra);
+        }
+        return 0.0;
     }
 }

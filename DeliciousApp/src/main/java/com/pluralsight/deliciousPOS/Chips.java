@@ -1,13 +1,11 @@
 package com.pluralsight.deliciousPOS;
 
-public enum DrinkSize {
-    SMALL(2.00),
-    MEDIUM(2.50),
-    LARGE(3.00);
+public enum Chips {
+    CHIPS(1.50);
 
     private final double price;
 
-    DrinkSize(double price) {
+    Chips(double price) {
         this.price = price;
     }
 
