@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/DELIcious.iml" filepath="$PROJECT_DIR$/.idea/DELIcious.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DeliciousApp/deliciousApp.iml" filepath="$PROJECT_DIR$/DeliciousApp/deliciousApp.iml" />
+    </modules>
+  </component>
+</project>
