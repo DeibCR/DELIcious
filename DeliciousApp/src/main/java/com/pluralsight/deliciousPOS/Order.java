@@ -62,8 +62,7 @@ public class Order {
         if (!drinks.isEmpty()) {
             orderSummary.append("\nDrinks:\n");
             for (int i = 0; i < drinks.size(); i++) {
-                orderSummary.append("- ").append(drinks.get(i).getName())
-                        .append(": $").append(String.format("%.2f", drinks.get(i).calculatePrice()))
+                orderSummary.append("- Drinks: $").append(String.format("%.2f", drinks.get(i).calculatePrice()))
                         .append("\n");
             }
         }
