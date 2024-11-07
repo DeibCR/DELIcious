@@ -39,6 +39,27 @@ public class Sandwich implements Priceable {
         return totalPrice;
     }
 
+    public String getSandwich() {
+        StringBuilder description = new StringBuilder();
+
+        description.append("Size: ").append(size)
+                .append(", Bread Type: ").append(breadType)
+                .append(", Toasted: ").append(isToasted ? "Yes" : "No")
+                .append("\nToppings:");
+
+        if (toppings.isEmpty()) {
+            description.append(" None");
+        } else {
+            for (Topping topping : toppings) {
+                description.append("\n - ").append(topping.getName())
+                        .append(": $").append(String.format("%.2f", topping.calculatePrice(size)));
+            }
+        }
+
+        description.append("\nTotal Price: $").append(String.format("%.2f", calculatePrice()));
+        return description.toString();
+    }
+
     public SandwichSize getSize() {
         return size;
     }
