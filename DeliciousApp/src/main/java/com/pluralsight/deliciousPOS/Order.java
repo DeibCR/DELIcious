@@ -8,7 +8,7 @@ public class Order {
     private List<Sandwich> sandwiches;
     private List<Drink> drinks;
     private List<Chip> chips;
-    private double totalPrice;
+
     private DateTimeFormatter receiptDate;
 
     public Order() {
@@ -18,6 +18,9 @@ public class Order {
         this.receiptDate = DateTimeFormatter.ofPattern("yyyyMMdd-HHmmss");
 
     }
+
+
+
 
     public void addSandwich(Sandwich sandwich) {
         sandwiches.add(sandwich);
