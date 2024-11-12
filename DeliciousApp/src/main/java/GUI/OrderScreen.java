@@ -31,7 +31,6 @@ public class OrderScreen extends JFrame{
         setSize(1000, 800);
         setLocationRelativeTo(null);
         setContentPane(mainPanel);
-       // setContentPane(dynamicPanel);
 
 
         order = new Order();
@@ -76,9 +75,7 @@ public class OrderScreen extends JFrame{
         dynamicPanel.revalidate(); //refresh
         dynamicPanel.repaint();
 
-       // this.add(sandwichPanel);
-       // this.revalidate();
-       // this.repaint();
+
     }
 
 
