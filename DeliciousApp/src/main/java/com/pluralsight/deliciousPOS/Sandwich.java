@@ -9,11 +9,13 @@ public class Sandwich implements Priceable {
     private boolean isToasted;
     private List<Topping> toppings;
 
-    public Sandwich(SandwichSize size, BreadType breadType,  boolean isToasted) {
+
+    public Sandwich(SandwichSize size, BreadType breadType,List<Topping> toppings,  boolean isToasted) {
         this.size = size;
         this.breadType = breadType;
         this.isToasted = isToasted;
         this.toppings = new ArrayList<>();
+
     }
 
     public void addTopping(Topping topping) {
@@ -34,7 +36,7 @@ public class Sandwich implements Priceable {
     public double calculatePrice() {
         double totalPrice= getBasePrice();
         for (Topping topping: toppings){
-            totalPrice +=topping.calculatePrice(size);
+            totalPrice +=topping.calculatePrice(size,isToasted);
         }
         return totalPrice;
     }
@@ -47,12 +49,15 @@ public class Sandwich implements Priceable {
                 .append(", Toasted: ").append(isToasted ? "Yes" : "No")
                 .append("\nToppings:");
 
+
+
+
         if (toppings.isEmpty()) {
             description.append(" None");
         } else {
             for (Topping topping : toppings) {
                 description.append("\n - ").append(topping.getName())
-                        .append(": $").append(String.format("%.2f", topping.calculatePrice(size)));
+                        .append(": $").append(String.format("%.2f", topping.calculatePrice(size,isToasted)));
             }
         }
 

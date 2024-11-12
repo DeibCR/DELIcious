@@ -13,7 +13,9 @@ public class RegularTopping implements Topping {
     }
 
     @Override
-    public double calculatePrice(SandwichSize size) {
+    public double calculatePrice(SandwichSize size, boolean isExtra) {
         return 0.0;
     }
+
+
 }

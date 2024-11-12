@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 
 import com.pluralsight.deliciousPOS.Order;
 
-public class OrderScreen extends JFrame{
+public class OrderScreen extends JFrame implements SandwichPanel.SandwichListener{
     private JButton sandwichButton;
     private JButton sideButton;
     private JButton drinkButton;
@@ -18,9 +18,10 @@ public class OrderScreen extends JFrame{
     private JLabel customerName;
     private JPanel dateTime;
     private JPanel hamburgerButtom;
-    private JPanel orderDetails;
     private JPanel mainPanel;
     private JPanel dynamicPanel;
+    private JScrollPane orderDetailsPanel;
+    private JTextArea orderSummaryTextArea;
     private Order order;
 
     private JPanel sandwichPanel;
@@ -34,7 +35,14 @@ public class OrderScreen extends JFrame{
 
 
         order = new Order();
-        dynamicPanel.setLayout(new BorderLayout(1, 1));
+        //dynamicPanel.setLayout(new BorderLayout(1, 1));
+
+        //orderSummaryTextArea = new JTextArea();
+
+        orderSummaryTextArea.setEditable(false);
+        //orderDetailsPanel = new JScrollPane(orderSummaryTextArea);
+
+        //mainPanel.add(orderDetailsPanel, BorderLayout.EAST);
 
 
         sandwichButton.addActionListener(new ActionListener() {
@@ -68,7 +76,8 @@ public class OrderScreen extends JFrame{
         dynamicPanel.removeAll(); //to remove the content on the panel
 
 
-        SandwichPanel sandwichPanel = new SandwichPanel(); //create the panel
+        SandwichPanel sandwichPanel = new SandwichPanel(order); //create the panel
+        sandwichPanel.setSandwichListener( this);
         dynamicPanel.add(sandwichPanel, BorderLayout.CENTER);  ;
 
 
@@ -78,5 +87,22 @@ public class OrderScreen extends JFrame{
 
     }
 
+    private void updateOrderDetails(){
+        String orderSummary= order.displayOrderDetails();
+
+        orderSummaryTextArea.setText(orderSummary);
+
+        orderDetailsPanel.revalidate();
+        orderDetailsPanel.repaint();
+
+
+    }
+
+    @Override
+    public void onSandwichAdded(){
+        updateOrderDetails();
+    }
+
 
 }
+

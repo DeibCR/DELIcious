@@ -7,7 +7,10 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import javax.swing.JList;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
+import java.util.ArrayList;
 
 
 public class SandwichPanel extends JPanel {
@@ -24,12 +27,17 @@ public class SandwichPanel extends JPanel {
     private JList<R_Topping> otherToppingsList;
     private JLabel prompt6;
     private JList<Sauce> saucesList;
-    private JButton button1;
-    private JButton button2;
+    private JButton yesButton;
+    private JButton noButton;
+    private JButton addSandwichButton;
+    private JLabel prompt7;
+    private Order order;
     private JCheckBox extraMeatCheckBox;
+    private boolean isToasted = false;
+    private SandwichListener sandwichListener;
 
 
-    public  SandwichPanel() {
+    public  SandwichPanel(Order order) {
         setLayout(new GridLayout(0, 2));
 
 
@@ -40,14 +48,13 @@ public class SandwichPanel extends JPanel {
         prompt2=new JLabel("Bread Size:");
 
         prompt3 = new JLabel("Select Meats:");
-        DefaultListModel<Meat> meatListModel = new DefaultListModel<>();
-        meatsList = new JList<>();
+        meatsList = new JList<>(loadMeatData());
         meatsList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         JScrollPane meatScrollPane = new JScrollPane(meatsList);
 
         prompt4=new JLabel("Select your Cheese:");
-        DefaultListModel<Meat> cheeseListModel = new DefaultListModel<>();
-        cheeseList=new JList<>();
+        cheeseList=new JList<>(loadCheeseData());
+        cheeseList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         JScrollPane cheeseScrollPane = new JScrollPane(cheeseList);
 
         prompt5=new JLabel("Select other Toppings");
@@ -60,11 +67,10 @@ public class SandwichPanel extends JPanel {
         saucesList=new JList<>();
         JScrollPane saucesScrollPane= new JScrollPane(saucesList);
 
-
-
-
-
-
+        prompt7=new JLabel("Sandwich toasted?");
+        yesButton = new JButton("Yes");
+        noButton = new JButton("No");
+        addSandwichButton=new JButton("Add Sandwich");
 
 
 
@@ -76,9 +82,6 @@ public class SandwichPanel extends JPanel {
             sandwichSizeComboBox.addItem(size);
         }
 
-        meatsList.setListData(Meat.values());
-
-        cheeseList.setListData(Cheese.values());
 
         otherToppingsList.setListData(R_Topping.values());
 
@@ -101,6 +104,14 @@ public class SandwichPanel extends JPanel {
 
         add(prompt6);
         add(saucesScrollPane);
+
+        add(prompt7);
+        add(yesButton);
+        add(noButton);
+        add(addSandwichButton);
+
+
+
 
 
         meatsList.addListSelectionListener(new ListSelectionListener() {
@@ -131,6 +142,54 @@ public class SandwichPanel extends JPanel {
 
             }
         });
+        addSandwichButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                BreadType selectedBread =(BreadType) breadTypeComboBox.getSelectedItem();
+                SandwichSize selectedSize=(SandwichSize) sandwichSizeComboBox.getSelectedItem();
+
+                if (selectedBread == null || selectedSize == null) {
+                    JOptionPane.showMessageDialog(SandwichPanel.this, "Please select both bread and sandwich size.");
+                    return;
+                }
+
+                List<Meat> selectedMeats = meatsList.getSelectedValuesList();
+                List<Cheese> selectedCheeses = cheeseList.getSelectedValuesList();
+                List<R_Topping> selectedToppings = otherToppingsList.getSelectedValuesList();
+                List<Sauce> selectedSauces = saucesList.getSelectedValuesList();
+
+                List<Topping> allToppings = new ArrayList<>();
+                allToppings.addAll(selectedMeats);
+                allToppings.addAll(selectedCheeses);
+                allToppings.addAll(selectedToppings);
+                allToppings.addAll(selectedSauces);
+
+                Sandwich newSandwich = new Sandwich(selectedSize,selectedBread ,allToppings, isToasted );
+
+                order.addSandwich(newSandwich);
+
+                JOptionPane.showMessageDialog(SandwichPanel.this, "Sandwich added to order!");
+
+                if (sandwichListener != null) {
+                    sandwichListener.onSandwichAdded();
+                }
+
+            }
+        });
+        yesButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                isToasted = true;
+
+            }
+        });
+        noButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                isToasted = false;
+
+            }
+        });
     }
     public BreadType getSelectedBreadType() {
         return (BreadType) breadTypeComboBox.getSelectedItem();
@@ -145,12 +204,12 @@ public class SandwichPanel extends JPanel {
         List<Meat> selectedMeats = meatsList.getSelectedValuesList();
         StringBuilder selectedMeatNames = new StringBuilder("Selected Meats: ");
 
-        // Append selected meat names to the string
+        // to append selected meat names to the string
         for (Meat meat : selectedMeats) {
-            selectedMeatNames.append(meat.name()).append(" ");
+            selectedMeatNames.append(meat.getName()).append(" ");
         }
 
-        // Show a message dialog to show the selected meats
+        // to show a message dialog with the selected meats
         JOptionPane.showMessageDialog(this, selectedMeatNames.toString(), "Meat Selection", JOptionPane.INFORMATION_MESSAGE);
     }
 
@@ -158,12 +217,12 @@ public class SandwichPanel extends JPanel {
         List<Cheese> selectedCheese = cheeseList.getSelectedValuesList();
         StringBuilder selectedCheeseNames = new StringBuilder("Selected Cheese: ");
 
-        // Append selected meat names to the string
+
         for (Cheese cheese : selectedCheese) {
-            selectedCheeseNames.append(cheese.name()).append(" ");
+            selectedCheeseNames.append(cheese.getName()).append(" ");
         }
 
-        // Show a message dialog to show the selected meats
+
         JOptionPane.showMessageDialog(this, selectedCheeseNames.toString(), "Cheese Selection", JOptionPane.INFORMATION_MESSAGE);
 
     }
@@ -173,7 +232,7 @@ public class SandwichPanel extends JPanel {
         StringBuilder selectedOtherToppingsNames = new StringBuilder("Selected Other Toppings: ");
 
         for (R_Topping rTopping : selectedOtherToppings){
-            selectedOtherToppingsNames.append(rTopping.name()).append("");
+            selectedOtherToppingsNames.append(rTopping.getName()).append("");
         }
 
         JOptionPane.showMessageDialog(this, selectedOtherToppingsNames.toString(), "Other Toppings Selection", JOptionPane.INFORMATION_MESSAGE);
@@ -184,18 +243,36 @@ public class SandwichPanel extends JPanel {
         StringBuilder selectedSaucesNames = new StringBuilder("Selected Sauces: ");
 
         for (Sauce sauce : selectedSauces){
-            selectedSaucesNames.append(sauce.name()).append("");
+            selectedSaucesNames.append(sauce.getName()).append("");
         }
 
         JOptionPane.showMessageDialog(this, selectedSaucesNames.toString(), "Other Toppings Selection", JOptionPane.INFORMATION_MESSAGE);
 
     }
 
-    // Method to check if extra meat option is selected
+
     public boolean isExtraMeatSelected() {
         return extraMeatCheckBox.isSelected();
     }
 
+    public void setSandwichListener(SandwichListener listener) {
+        this.sandwichListener = listener;
+    }
 
 
+    public interface SandwichListener {
+        void onSandwichAdded();
+    }
+
+    private Meat[] loadMeatData() {
+        List<Meat> meats = DataLoader.loadMeatData(getClass().getClassLoader().getResource("constantDataMeat.csv").getPath());
+        System.out.println("Meats loaded for panel: " + meats.size());
+        return meats.toArray(new Meat[0]);
+    }
+
+    private Cheese[] loadCheeseData() {
+        List<Cheese> cheeses = DataLoader.loadCheeseData(getClass().getClassLoader().getResource("constantDataCheese.csv").getPath());
+        System.out.println("Meats loaded for panel: " + cheeses.size());
+        return cheeses.toArray(new Cheese[0]);
+    }
 }

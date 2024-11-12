@@ -23,15 +23,15 @@ public class PremiumTopping implements Topping {
 
     @Override
     public String getName() {
-        return (meatType != null) ? meatType.name() : (cheeseType != null) ? cheeseType.name() : "";
+        return (meatType != null) ? meatType.getName() : (cheeseType != null) ? cheeseType.getName() : "";
     }
 
     @Override
-    public double calculatePrice(SandwichSize size) {
+    public double calculatePrice(SandwichSize size,boolean isExtra) {
         if (meatType!=null){
-            return meatType.getPrice(size,isExtra);
+            return meatType.calculatePrice(size,isExtra);
         } else if (cheeseType!=null) {
-            return cheeseType.getPrice(size,isExtra);
+            return cheeseType.calculatePrice(size,isExtra);
         }
         return 0.0;
     }

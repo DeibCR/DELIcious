@@ -18,6 +18,9 @@ public enum BreadType {
         this.price8Inch = price8Inch;
         this.price12Inch = price12Inch;
     }
+    public String getName() {
+        return name().charAt(0) + name().substring(1).toLowerCase().replace("_", " ");
+    }
 
     public double getPrice(SandwichSize size){
         return switch (size) {

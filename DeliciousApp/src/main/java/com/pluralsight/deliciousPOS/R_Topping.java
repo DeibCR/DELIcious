@@ -1,6 +1,6 @@
 package com.pluralsight.deliciousPOS;
 
-public enum R_Topping {
+public enum R_Topping implements Topping{
     LETTUCE,
     PEPPERS,
     ONIONS,
@@ -11,7 +11,15 @@ public enum R_Topping {
     GUACAMOLE,
     MUSHROOMS;
 
-    public double getPrice() {
-        return 0.0;  // Price will be 0 because all the regular topping are included in the base price
+
+
+    @Override
+    public String getName() {
+        return name().charAt(0) + name().substring(1).toLowerCase().replace("_", " ");
+    }
+
+    @Override
+    public double calculatePrice(SandwichSize size, boolean isExtra) {
+        return 0.0;
     }
 }

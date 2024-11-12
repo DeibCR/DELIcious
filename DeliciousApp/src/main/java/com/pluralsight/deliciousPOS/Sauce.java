@@ -1,6 +1,6 @@
 package com.pluralsight.deliciousPOS;
 
-public enum Sauce {
+public enum Sauce implements Topping {
     MAYO,
     MUSTARD,
     KETCHUP,
@@ -8,7 +8,15 @@ public enum Sauce {
     THOUSAND_ISLANDS,
     VINAIGRETTE;
 
-    public double getPrice() {
-        return 0.0;  // Price will be 0 because  sauces are included in the base price
+
+
+    @Override
+    public String getName() {
+        return name().charAt(0) + name().substring(1).toLowerCase().replace("_", " ");
+    }
+
+    @Override
+    public double calculatePrice(SandwichSize size, boolean isExtra) {
+        return 0.0;
     }
 }
