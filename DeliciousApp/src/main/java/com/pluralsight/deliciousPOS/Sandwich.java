@@ -28,7 +28,7 @@ public class Sandwich implements Priceable {
     }
 
     private double getBasePrice(){
-        return breadType.getPrice(size);
+        return breadType.calculatePrice(size,isToasted);
     }
 
 

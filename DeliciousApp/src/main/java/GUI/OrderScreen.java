@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 
 import com.pluralsight.deliciousPOS.Order;
 
-public class OrderScreen extends JFrame implements SandwichPanel.SandwichListener{
+public class OrderScreen extends JFrame implements SandwichPanel.SandwichListener,DrinksPanel.DrinksListener{
     private JButton sandwichButton;
     private JButton sideButton;
     private JButton drinkButton;
@@ -26,6 +26,7 @@ public class OrderScreen extends JFrame implements SandwichPanel.SandwichListene
     private Order order;
 
     private JPanel sandwichPanel;
+    private JPanel drinksPanel;
 
     public OrderScreen() {
         setTitle("Order Screen");
@@ -52,6 +53,7 @@ public class OrderScreen extends JFrame implements SandwichPanel.SandwichListene
         drinkButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                displayDrinksPanel();
 
             }
         });
@@ -61,6 +63,7 @@ public class OrderScreen extends JFrame implements SandwichPanel.SandwichListene
 
             }
         });
+
     }
 
     // Method that display SandwichPanel in the dynamicPanel
@@ -78,10 +81,25 @@ public class OrderScreen extends JFrame implements SandwichPanel.SandwichListene
         //sandwichPanel.setBackground(Color.green);
 
 
-
         dynamicPanel.revalidate(); //refresh
         dynamicPanel.repaint();
 
+    }
+
+    private void displayDrinksPanel() {
+        if (dynamicPanel == null) {
+            System.out.println("Error: dynamicPanel is not initialized.");
+            return;
+        }
+
+        dynamicPanel.removeAll(); //to remove existing content in  the panel
+
+        DrinksPanel drinksPanel = new DrinksPanel(order);
+        drinksPanel.setDrinksListener(this);
+        dynamicPanel.add(drinksPanel, BorderLayout.CENTER);
+
+        dynamicPanel.revalidate(); //refresh
+        dynamicPanel.repaint();
 
     }
 
@@ -103,6 +121,11 @@ public class OrderScreen extends JFrame implements SandwichPanel.SandwichListene
 
     @Override
     public void onSandwichAdded(){
+        updateOrderDetails();
+    }
+
+    @Override
+    public void onDrinksAdded(){
         updateOrderDetails();
     }
 

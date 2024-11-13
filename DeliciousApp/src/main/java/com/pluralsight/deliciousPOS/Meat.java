@@ -40,6 +40,6 @@ public class Meat implements Topping {
 
     @Override
     public String toString() {
-        return this.getName();
+        return this.getName().toLowerCase();
     }
 }

@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 public class SandwichPanel extends JPanel {
     private JPanel mainPanel;
-    private JComboBox<BreadType> breadTypeComboBox;
+    private JComboBox<BreadType> breadTypeList;
     private JLabel prompt1;
     private JComboBox<SandwichSize> sandwichSizeComboBox;
     private JLabel prompt2;
@@ -39,27 +39,41 @@ public class SandwichPanel extends JPanel {
 
     public  SandwichPanel(Order order) {
         setLayout(new GridLayout(0, 2));
-        //setLayout(new FlowLayout());
         setBackground(Color.LIGHT_GRAY);
         //breadTypeComboBox.setBackground(Color.orange);
 
+
+        BreadType[] breadType = loadBreadData();
+        breadTypeList.removeAllItems();
+        breadTypeList.setBackground(Color.CYAN);
+
+
+        for (BreadType type : breadType) {
+            breadTypeList.addItem(type);
+        }
+
         meatsList.setListData(loadMeatData());
+
+        meatsList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         JScrollPane meatScrollPane = new JScrollPane(meatsList);
+
 
         cheeseList.setListData(loadCheeseData());
         JScrollPane cheeseScrollPane = new JScrollPane(cheeseList);
+        cheeseList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+
 
 
         DefaultListModel<R_Topping> otherToppingsListModel = new DefaultListModel<>();
         JScrollPane otherToppingsScrollPane= new JScrollPane(otherToppingsList);
+        otherToppingsList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 
         DefaultListModel<Sauce> saucesListModel = new DefaultListModel<>();
         JScrollPane saucesScrollPane= new JScrollPane(saucesList);
+        saucesList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 
 
-        for (BreadType bread : BreadType.values()) {
-            breadTypeComboBox.addItem(bread);
-        }
+
 
         for (SandwichSize size : SandwichSize.values()){
             sandwichSizeComboBox.addItem(size);
@@ -72,7 +86,7 @@ public class SandwichPanel extends JPanel {
 
         //prompt1.setBackground(Color.ORANGE);
         add(prompt1);
-        add(breadTypeComboBox);
+        add(breadTypeList);
 
         add(prompt2);
         add(sandwichSizeComboBox);
@@ -93,7 +107,6 @@ public class SandwichPanel extends JPanel {
         add(yesButton);
         add(noButton);
         add(addSandwichButton);
-
 
 
 
@@ -126,32 +139,47 @@ public class SandwichPanel extends JPanel {
 
             }
         });
+
+
         addSandwichButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                BreadType selectedBread =(BreadType) breadTypeComboBox.getSelectedItem();
+
+                //Get the selected bread and sandwich sizes
+                BreadType selectedBread =(BreadType) breadTypeList.getSelectedItem();
                 SandwichSize selectedSize=(SandwichSize) sandwichSizeComboBox.getSelectedItem();
 
+                //this is to make sure that the user select bread and size first, bloking the option of add a sandwich withouth those components
                 if (selectedBread == null || selectedSize == null) {
                     JOptionPane.showMessageDialog(SandwichPanel.this, "Please select both bread and sandwich size.");
                     return;
                 }
 
+                //Retrieve the selected meats
                 List<Meat> selectedMeats = meatsList.getSelectedValuesList();
+
+
+                //Retrieve the selected meats
                 List<Cheese> selectedCheeses = cheeseList.getSelectedValuesList();
+                //error testings
                 System.out.println("Selected Meats: " + selectedMeats);
                 System.out.println("Selected Cheeses: " + selectedCheeses);
+
+                //Retrieve the selected regular toppings
                 List<R_Topping> selectedToppings = otherToppingsList.getSelectedValuesList();
+
+                //Retrieve the selected regular toppings
                 List<Sauce> selectedSauces = saucesList.getSelectedValuesList();
 
+               //Combine all selected toppings
                 List<Topping> allToppings = new ArrayList<>();
                 allToppings.addAll(selectedMeats);
                 allToppings.addAll(selectedCheeses);
                 allToppings.addAll(selectedToppings);
                 allToppings.addAll(selectedSauces);
 
+                //create a new sandwich bject and added to the order, and show a confirmation message.
                 Sandwich newSandwich = new Sandwich(selectedSize,selectedBread ,allToppings, isToasted );
-
                 order.addSandwich(newSandwich);
 
                 JOptionPane.showMessageDialog(SandwichPanel.this, "Sandwich added to order!");
@@ -178,8 +206,9 @@ public class SandwichPanel extends JPanel {
         });
     }
     public BreadType getSelectedBreadType() {
-        return (BreadType) breadTypeComboBox.getSelectedItem();
+        return (BreadType) breadTypeList.getSelectedItem();
     }
+
 
     public SandwichSize getSelectedSandwichSize() {
         return (SandwichSize) sandwichSizeComboBox.getSelectedItem();
@@ -188,6 +217,7 @@ public class SandwichPanel extends JPanel {
     private void handleMeatSelection() {
 
         List<Meat> selectedMeats = meatsList.getSelectedValuesList();
+        System.out.println("Selected Meats: " + selectedMeats);//debug
         StringBuilder selectedMeatNames = new StringBuilder("Selected Meats: ");
 
         // to append selected meat names to the string
@@ -260,5 +290,12 @@ public class SandwichPanel extends JPanel {
         List<Cheese> cheeses = DataLoader.loadCheeseData(getClass().getClassLoader().getResource("constantDataCheese.csv").getPath());
         System.out.println("Meats loaded for panel: " + cheeses.size());
         return cheeses.toArray(new Cheese[0]);
+    }
+
+    private BreadType[] loadBreadData() {
+
+        List<BreadType> breadTypes = DataLoader.loadBreadData(getClass().getClassLoader().getResource("constantDataBreadType.csv").getPath());
+        System.out.println("Bread types loaded for panel: " + breadTypes.size());
+        return breadTypes.toArray(new BreadType[0]);
     }
 }

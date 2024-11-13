@@ -29,8 +29,13 @@ public class Order {
     }
 
 
-    public void addDrink(Drink drink) {
-        drinks.add(drink);
+    public void addDrink(Drink selectedDrink, DrinkSize size) {
+
+        if (selectedDrink != null && size != null) {
+
+            Drink newDrink = new Drink(selectedDrink.getName(), size, selectedDrink.getSmall(), selectedDrink.getMedium(), selectedDrink.getLarge());
+            drinks.add(newDrink);
+        }
     }
 
 
@@ -67,7 +72,8 @@ public class Order {
         if (!drinks.isEmpty()) {
             orderSummary.append("\nDrinks:\n");
             for (int i = 0; i < drinks.size(); i++) {
-                orderSummary.append("- Drinks: $").append(String.format("%.2f", drinks.get(i).calculatePrice()))
+                Drink drink = drinks.get(i);
+                orderSummary.append("- ").append(drink.getDrink())
                         .append("\n");
             }
         }
