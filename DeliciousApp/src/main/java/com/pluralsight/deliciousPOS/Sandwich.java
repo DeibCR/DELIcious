@@ -14,7 +14,7 @@ public class Sandwich implements Priceable {
         this.size = size;
         this.breadType = breadType;
         this.isToasted = isToasted;
-        this.toppings = new ArrayList<>();
+        this.toppings = toppings !=null ? toppings: new ArrayList<>();
 
     }
 
@@ -56,7 +56,10 @@ public class Sandwich implements Priceable {
             description.append(" None");
         } else {
             for (Topping topping : toppings) {
-                description.append("\n - ").append(topping.getName())
+
+
+                description.append("\n - " +
+                                "").append(topping.getName())
                         .append(": $").append(String.format("%.2f", topping.calculatePrice(size,isToasted)));
             }
         }

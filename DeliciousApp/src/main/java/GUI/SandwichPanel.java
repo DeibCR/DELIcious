@@ -39,39 +39,22 @@ public class SandwichPanel extends JPanel {
 
     public  SandwichPanel(Order order) {
         setLayout(new GridLayout(0, 2));
+        //setLayout(new FlowLayout());
+        setBackground(Color.LIGHT_GRAY);
+        //breadTypeComboBox.setBackground(Color.orange);
 
-
-        breadTypeComboBox = new JComboBox<>();
-        prompt1 = new JLabel("Select Bread Type:");
-
-        sandwichSizeComboBox=new JComboBox<>();
-        prompt2=new JLabel("Bread Size:");
-
-        prompt3 = new JLabel("Select Meats:");
-        meatsList = new JList<>(loadMeatData());
-        meatsList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        meatsList.setListData(loadMeatData());
         JScrollPane meatScrollPane = new JScrollPane(meatsList);
 
-        prompt4=new JLabel("Select your Cheese:");
-        cheeseList=new JList<>(loadCheeseData());
-        cheeseList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        cheeseList.setListData(loadCheeseData());
         JScrollPane cheeseScrollPane = new JScrollPane(cheeseList);
 
-        prompt5=new JLabel("Select other Toppings");
+
         DefaultListModel<R_Topping> otherToppingsListModel = new DefaultListModel<>();
-        otherToppingsList=new JList<>();
         JScrollPane otherToppingsScrollPane= new JScrollPane(otherToppingsList);
 
-        prompt6=new JLabel("Select Sauces");
         DefaultListModel<Sauce> saucesListModel = new DefaultListModel<>();
-        saucesList=new JList<>();
         JScrollPane saucesScrollPane= new JScrollPane(saucesList);
-
-        prompt7=new JLabel("Sandwich toasted?");
-        yesButton = new JButton("Yes");
-        noButton = new JButton("No");
-        addSandwichButton=new JButton("Add Sandwich");
-
 
 
         for (BreadType bread : BreadType.values()) {
@@ -87,6 +70,7 @@ public class SandwichPanel extends JPanel {
 
         saucesList.setListData(Sauce.values());
 
+        //prompt1.setBackground(Color.ORANGE);
         add(prompt1);
         add(breadTypeComboBox);
 
@@ -155,6 +139,8 @@ public class SandwichPanel extends JPanel {
 
                 List<Meat> selectedMeats = meatsList.getSelectedValuesList();
                 List<Cheese> selectedCheeses = cheeseList.getSelectedValuesList();
+                System.out.println("Selected Meats: " + selectedMeats);
+                System.out.println("Selected Cheeses: " + selectedCheeses);
                 List<R_Topping> selectedToppings = otherToppingsList.getSelectedValuesList();
                 List<Sauce> selectedSauces = saucesList.getSelectedValuesList();
 

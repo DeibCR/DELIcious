@@ -12,9 +12,6 @@ public class OrderScreen extends JFrame implements SandwichPanel.SandwichListene
     private JButton sandwichButton;
     private JButton sideButton;
     private JButton drinkButton;
-    private JButton checkOutButton;
-    private JButton orderInfoButton;
-    private JButton cancelOrderButton;
     private JLabel customerName;
     private JPanel dateTime;
     private JPanel hamburgerButtom;
@@ -22,6 +19,10 @@ public class OrderScreen extends JFrame implements SandwichPanel.SandwichListene
     private JPanel dynamicPanel;
     private JScrollPane orderDetailsPanel;
     private JTextArea orderSummaryTextArea;
+    private JLabel totalPriceLabel;
+    private JButton checkOutButton;
+    private JButton cancelOrderButton;
+    private JLabel orderDataTime;
     private Order order;
 
     private JPanel sandwichPanel;
@@ -29,20 +30,16 @@ public class OrderScreen extends JFrame implements SandwichPanel.SandwichListene
     public OrderScreen() {
         setTitle("Order Screen");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(1000, 800);
+        setSize(800, 600);
         setLocationRelativeTo(null);
         setContentPane(mainPanel);
 
 
         order = new Order();
-        //dynamicPanel.setLayout(new BorderLayout(1, 1));
+        orderSummaryTextArea.setEditable(false); //uneditable
 
-        //orderSummaryTextArea = new JTextArea();
+        totalPriceLabel.setText("Total Price: $0.00"); //a default value for the totalPrice
 
-        orderSummaryTextArea.setEditable(false);
-        //orderDetailsPanel = new JScrollPane(orderSummaryTextArea);
-
-        //mainPanel.add(orderDetailsPanel, BorderLayout.EAST);
 
 
         sandwichButton.addActionListener(new ActionListener() {
@@ -73,12 +70,13 @@ public class OrderScreen extends JFrame implements SandwichPanel.SandwichListene
             return;
         }
 
-        dynamicPanel.removeAll(); //to remove the content on the panel
+        dynamicPanel.removeAll(); //to remove existing content in  the panel
 
+        SandwichPanel sandwichPanel = new SandwichPanel(order);
+        sandwichPanel.setSandwichListener(this);
+        dynamicPanel.add(sandwichPanel, BorderLayout.CENTER);
+        //sandwichPanel.setBackground(Color.green);
 
-        SandwichPanel sandwichPanel = new SandwichPanel(order); //create the panel
-        sandwichPanel.setSandwichListener( this);
-        dynamicPanel.add(sandwichPanel, BorderLayout.CENTER);  ;
 
 
         dynamicPanel.revalidate(); //refresh
@@ -92,8 +90,13 @@ public class OrderScreen extends JFrame implements SandwichPanel.SandwichListene
 
         orderSummaryTextArea.setText(orderSummary);
 
+        double total = order.calculateTotal();
+        totalPriceLabel.setText(String.format("Total Price: $%.2f", total));
+
         orderDetailsPanel.revalidate();
         orderDetailsPanel.repaint();
+        totalPriceLabel.revalidate();
+        totalPriceLabel.repaint();
 
 
     }

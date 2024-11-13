@@ -6,7 +6,9 @@
       <xy x="20" y="20" width="500" height="400"/>
     </constraints>
     <properties>
+      <background color="-12500671"/>
       <foreground color="-13290187"/>
+      <opaque value="false"/>
     </properties>
     <border type="none"/>
     <children>
@@ -17,9 +19,11 @@
           </grid>
         </constraints>
         <properties>
+          <font name="Consolas" size="10" style="0"/>
           <foreground color="-13750738"/>
           <model/>
           <opaque value="true"/>
+          <visible value="true"/>
         </properties>
       </component>
       <component id="b4b0a" class="javax.swing.JComboBox" binding="sandwichSizeComboBox">
@@ -29,6 +33,7 @@
           </grid>
         </constraints>
         <properties>
+          <font name="Consolas" size="10" style="0"/>
           <model/>
         </properties>
       </component>
@@ -41,21 +46,9 @@
           <text value="Bread Size"/>
         </properties>
       </component>
-      <component id="eb36" class="javax.swing.JLabel" binding="prompt1">
-        <constraints>
-          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
-            <preferred-size width="120" height="45"/>
-          </grid>
-        </constraints>
-        <properties>
-          <font name="Consolas" size="12" style="0"/>
-          <foreground color="-13575861"/>
-          <text value="Select your bread"/>
-        </properties>
-      </component>
       <component id="c2bb3" class="javax.swing.JLabel" binding="prompt3">
         <constraints>
-          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="1" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <font name="Consolas" size="12" style="0"/>
@@ -98,6 +91,7 @@
         <properties>
           <foreground color="-1484275"/>
           <model/>
+          <opaque value="true"/>
           <selectionForeground color="-1484275"/>
         </properties>
       </component>
@@ -158,6 +152,30 @@
           <text value="Add Sandwich"/>
         </properties>
       </component>
+      <grid id="a8b78" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-1484275"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="eb36" class="javax.swing.JLabel" binding="prompt1">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="1" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                <preferred-size width="50" height="45"/>
+              </grid>
+            </constraints>
+            <properties>
+              <font name="Consolas" size="12" style="0"/>
+              <foreground color="-3092263"/>
+              <text value="Select your bread"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
     </children>
   </grid>
 </form>
