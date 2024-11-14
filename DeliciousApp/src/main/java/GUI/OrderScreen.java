@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter;
 
 import com.pluralsight.deliciousPOS.Order;
 
-public class OrderScreen extends JFrame implements SandwichPanel.SandwichListener, DrinksPanel.DrinksListener, SandwichOptionsPanel.SandwichOptionsListener {
+public class OrderScreen extends JFrame implements SandwichPanel.SandwichListener, DrinksPanel.DrinksListener, SandwichOptionsPanel.SandwichOptionsListener, OptionsSizePanel.OptionsSizeListener {
     private JButton sandwichButton;
     private JButton sideButton;
     private JButton drinkButton;

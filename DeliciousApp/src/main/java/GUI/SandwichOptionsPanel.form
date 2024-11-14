@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="GUI.SandwichOptionsPanel">
-  <grid id="27dc6" binding="mainPanel" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="mainPanel" layout-manager="GridLayoutManager" row-count="4" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
       <xy x="20" y="20" width="1089" height="400"/>
@@ -11,7 +11,9 @@
       <grid id="9f78b" binding="optionsPanel" layout-manager="GridLayoutManager" row-count="2" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
-          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="-1" height="150"/>
+          </grid>
         </constraints>
         <properties>
           <background color="-13750738"/>
@@ -31,8 +33,8 @@
               <horizontalTextPosition value="0"/>
               <opaque value="false"/>
               <text value="Sizes"/>
-              <verticalAlignment value="3"/>
-              <verticalTextPosition value="3"/>
+              <verticalAlignment value="0"/>
+              <verticalTextPosition value="0"/>
             </properties>
           </component>
           <component id="2955d" class="javax.swing.JButton" binding="cheeses">
@@ -42,7 +44,14 @@
               </grid>
             </constraints>
             <properties>
+              <borderPainted value="false"/>
+              <contentAreaFilled value="false"/>
+              <foreground color="-1446161"/>
+              <horizontalTextPosition value="0"/>
+              <opaque value="false"/>
               <text value="Cheese"/>
+              <verticalAlignment value="0"/>
+              <verticalTextPosition value="0"/>
             </properties>
           </component>
           <component id="924db" class="javax.swing.JButton" binding="bread">
@@ -59,8 +68,8 @@
               <margin top="0" left="0" bottom="0" right="0"/>
               <opaque value="false"/>
               <text value="Breads"/>
-              <verticalAlignment value="3"/>
-              <verticalTextPosition value="3"/>
+              <verticalAlignment value="0"/>
+              <verticalTextPosition value="0"/>
             </properties>
           </component>
           <component id="1b935" class="javax.swing.JButton" binding="meats">
@@ -70,7 +79,14 @@
               </grid>
             </constraints>
             <properties>
+              <borderPainted value="false"/>
+              <contentAreaFilled value="false"/>
+              <foreground color="-1446161"/>
+              <horizontalTextPosition value="0"/>
+              <opaque value="false"/>
               <text value="Meats"/>
+              <verticalAlignment value="0"/>
+              <verticalTextPosition value="0"/>
             </properties>
           </component>
           <component id="dac5e" class="javax.swing.JButton" binding="otherToppings">
@@ -80,7 +96,15 @@
               </grid>
             </constraints>
             <properties>
+              <borderPainted value="false"/>
+              <contentAreaFilled value="false"/>
+              <foreground color="-1446161"/>
+              <horizontalTextPosition value="0"/>
+              <opaque value="false"/>
               <text value="Other toppings"/>
+              <verifyInputWhenFocusTarget value="false"/>
+              <verticalAlignment value="0"/>
+              <verticalTextPosition value="0"/>
             </properties>
           </component>
           <component id="493d1" class="javax.swing.JButton" binding="Sauces">
@@ -90,6 +114,10 @@
               </grid>
             </constraints>
             <properties>
+              <borderPainted value="false"/>
+              <contentAreaFilled value="false"/>
+              <foreground color="-1446161"/>
+              <horizontalTextPosition value="0"/>
               <text value="Sauces"/>
             </properties>
           </component>
@@ -111,7 +139,7 @@
       <grid id="e6be6" binding="buttonPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
-          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
             <preferred-size width="-1" height="50"/>
           </grid>
         </constraints>
@@ -132,6 +160,14 @@
           </component>
         </children>
       </grid>
+      <component id="c6eb8" class="javax.swing.JButton" binding="toastedButton" default-binding="true">
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Toasted"/>
+        </properties>
+      </component>
     </children>
   </grid>
 </form>
