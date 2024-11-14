@@ -1,7 +1,5 @@
 package GUI;
 
-
-import com.pluralsight.deliciousPOS.Cheese;
 import com.pluralsight.deliciousPOS.DataLoader;
 import com.pluralsight.deliciousPOS.Meat;
 import com.pluralsight.deliciousPOS.Order;
@@ -27,11 +25,11 @@ public class MeatsPanel extends JPanel{
 
         meatsList.setListData(loadMeatData());
         meatsList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-        JScrollPane breadScrollPane=new JScrollPane(meatsList);
-        breadScrollPane.setPreferredSize(new Dimension(200, 150));
+        JScrollPane meatScrollPane=new JScrollPane(meatsList);
+        meatScrollPane.setPreferredSize(new Dimension(200, 150));
 
 
-        mainPanel.add(breadScrollPane, BorderLayout.CENTER);
+        mainPanel.add(meatScrollPane, BorderLayout.CENTER);
         add(mainPanel, BorderLayout.CENTER);
 
     }

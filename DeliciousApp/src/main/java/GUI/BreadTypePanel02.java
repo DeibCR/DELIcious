@@ -4,8 +4,6 @@ import javax.swing.*;
 import com.pluralsight.deliciousPOS.BreadType;
 import com.pluralsight.deliciousPOS.DataLoader;
 import com.pluralsight.deliciousPOS.Order;
-
-import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
@@ -20,14 +18,6 @@ public class BreadTypePanel02 extends JPanel {
         setLayout(new BorderLayout());
         mainPanel = new JPanel(new BorderLayout());
         breadType = new JList<>();
-
-        BreadType[] breadData = loadBreadData();
-        if (breadData.length == 0) {
-            System.out.println("Error: No bread types loaded.");
-        } else {
-            System.out.println("Bread types loaded successfully.");
-        }
-
 
 
         breadType.setListData(loadBreadData());
