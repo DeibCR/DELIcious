@@ -17,7 +17,6 @@ public class CheesesPanel extends JPanel{
     public  CheesesPanel(Order order){
         setLayout(new BorderLayout());
         mainPanel = new JPanel(new BorderLayout());
-        mainPanel.setBackground(Color.orange);
         cheeseList = new JList<>();
 
 

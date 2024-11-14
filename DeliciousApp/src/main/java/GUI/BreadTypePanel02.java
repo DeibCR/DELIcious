@@ -19,8 +19,14 @@ public class BreadTypePanel02 extends JPanel {
     public BreadTypePanel02(Order order) {
         setLayout(new BorderLayout());
         mainPanel = new JPanel(new BorderLayout());
-        mainPanel.setBackground(Color.orange);
         breadType = new JList<>();
+
+        BreadType[] breadData = loadBreadData();
+        if (breadData.length == 0) {
+            System.out.println("Error: No bread types loaded.");
+        } else {
+            System.out.println("Bread types loaded successfully.");
+        }
 
 
 
