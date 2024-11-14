@@ -1,0 +1,8 @@
+Order Summary:
+
+Drinks:
+- Drink Name: SMOOTHIE
+Size: MEDIUM
+Total Price: $2.50
+
+Total: $2.50

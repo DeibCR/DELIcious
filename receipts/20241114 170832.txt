@@ -1,0 +1,8 @@
+Order Summary:
+
+Drinks:
+- Drink Name: SMOOTHIE
+Size: SMALL
+Total Price: $2.00
+
+Total: $2.00
