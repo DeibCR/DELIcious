@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter;
 
 import com.pluralsight.deliciousPOS.Order;
 
-public class OrderScreen extends JFrame implements SandwichPanel.SandwichListener,DrinksPanel.DrinksListener{
+public class OrderScreen extends JFrame implements SandwichPanel.SandwichListener, DrinksPanel.DrinksListener, SandwichOptionsPanel.SandwichOptionsListener {
     private JButton sandwichButton;
     private JButton sideButton;
     private JButton drinkButton;
@@ -52,7 +52,8 @@ public class OrderScreen extends JFrame implements SandwichPanel.SandwichListene
         sandwichButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                displaySandwichPanel();
+                //displaySandwichPanel();
+                displaySandwichOptionsPanel();;
 
             }
         });
@@ -84,7 +85,26 @@ public class OrderScreen extends JFrame implements SandwichPanel.SandwichListene
         SandwichPanel sandwichPanel = new SandwichPanel(order);
         sandwichPanel.setSandwichListener(this);
         dynamicPanel.add(sandwichPanel, BorderLayout.CENTER);
-        //sandwichPanel.setBackground(Color.green);
+
+
+
+        dynamicPanel.revalidate(); //refresh
+        dynamicPanel.repaint();
+
+    }
+
+    private void displaySandwichOptionsPanel() {
+        if (dynamicPanel == null) {
+            System.out.println("Error: dynamicPanel is not initialized.");
+            return;
+        }
+
+        dynamicPanel.removeAll(); //to remove existing content in  the panel
+
+        SandwichOptionsPanel sandwichOptionsPanel = new SandwichOptionsPanel(order);
+        sandwichOptionsPanel.setSandwichOptionsListener(this);
+        dynamicPanel.add(sandwichOptionsPanel, BorderLayout.CENTER);
+
 
 
         dynamicPanel.revalidate(); //refresh
