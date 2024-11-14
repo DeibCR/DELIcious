@@ -17,11 +17,13 @@ public class DrinksPanel extends JPanel {
     private JPanel drinksPanel;
     private JList<Drink> drinksList;
     private JButton addDrinkButton;
+    private JPanel buttomPanel;
+    private JPanel labelPanel;
     private DrinksPanel.DrinksListener drinksListener;
     private Order order;
 
     public DrinksPanel(Order order) {
-        setLayout(new GridLayout(0, 3));
+       // setLayout(new GridLayout(0, 2));
         setBackground(Color.LIGHT_GRAY);
 
 
@@ -32,10 +34,12 @@ public class DrinksPanel extends JPanel {
         drinksList.setListData(loadDrinkData());
         JScrollPane drinksScrollPane=new JScrollPane(drinksList);
 
+        add(labelPanel);
         add(prompt1);
         add(sizeComboBox);
         add(drinksPanel);
         add(drinksList);
+        add(buttomPanel);
         add(addDrinkButton);
 
 

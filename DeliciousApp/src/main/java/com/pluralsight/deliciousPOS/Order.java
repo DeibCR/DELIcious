@@ -1,5 +1,6 @@
 package com.pluralsight.deliciousPOS;
 
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,14 +11,13 @@ public class Order {
     private List<Sandwich> sandwiches;
     private List<Drink> drinks;
     private List<Chip> chips;
-
-    private  DateTimeFormatter receiptDate;
+    private LocalDateTime receiptDate;
 
     public Order() {
         sandwiches = new ArrayList<>();
         drinks = new ArrayList<>();
         chips = new ArrayList<>();
-        this.receiptDate = DateTimeFormatter.ofPattern("yyyyMMdd-HHmmss");
+        this.receiptDate = LocalDateTime.now();
 
     }
 
@@ -91,6 +91,11 @@ public class Order {
         return orderSummary.toString();
 
 
+    }
+
+    public String getFormattedReceiptDate() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        return receiptDate.format(formatter);
     }
 
 

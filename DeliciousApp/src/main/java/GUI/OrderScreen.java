@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 
 import com.pluralsight.deliciousPOS.Order;
@@ -14,7 +16,6 @@ public class OrderScreen extends JFrame implements SandwichPanel.SandwichListene
     private JButton drinkButton;
     private JLabel customerName;
     private JPanel dateTime;
-    private JPanel hamburgerButtom;
     private JPanel mainPanel;
     private JPanel dynamicPanel;
     private JScrollPane orderDetailsPanel;
@@ -24,9 +25,11 @@ public class OrderScreen extends JFrame implements SandwichPanel.SandwichListene
     private JButton cancelOrderButton;
     private JLabel orderDataTime;
     private Order order;
-
     private JPanel sandwichPanel;
     private JPanel drinksPanel;
+    private Timer timer;
+
+
 
     public OrderScreen() {
         setTitle("Order Screen");
@@ -38,8 +41,11 @@ public class OrderScreen extends JFrame implements SandwichPanel.SandwichListene
 
         order = new Order();
         orderSummaryTextArea.setEditable(false); //uneditable
+        orderSummaryTextArea.setBackground(Color.darkGray);
 
         totalPriceLabel.setText("Total Price: $0.00"); //a default value for the totalPrice
+
+        startDateTimeUpdater();
 
 
 
@@ -127,6 +133,28 @@ public class OrderScreen extends JFrame implements SandwichPanel.SandwichListene
     @Override
     public void onDrinksAdded(){
         updateOrderDetails();
+    }
+
+    //method that start a timer and updates that time and date
+    private void startDateTimeUpdater() {
+        timer = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern(" MM/dd/yyyy  HH:mm:ss");
+                String formattedDateTime = LocalDateTime.now().format(formatter);
+                orderDataTime.setText(formattedDateTime);
+            }
+        });
+        timer.start();
+    }
+
+    @Override
+    public void dispose() {
+        // Stop the timer when the frame is closed
+        if (timer != null) {
+            timer.stop();
+        }
+        super.dispose();
     }
 
 

@@ -16,8 +16,10 @@ public class HomeScreenGUI extends JFrame {
         setTitle("DELI cious");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setContentPane(mainPanel);
-        setSize(1000,1000);
-        setLocationRelativeTo(null);
+
+
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        setUndecorated(true);
 
         ImageIcon icon = new ImageIcon(Objects.requireNonNull(getClass().getResource("/images/logo01" +
                 ".png")));

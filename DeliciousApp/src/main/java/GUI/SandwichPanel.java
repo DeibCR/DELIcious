@@ -30,7 +30,7 @@ public class SandwichPanel extends JPanel {
     private JButton yesButton;
     private JButton noButton;
     private JButton addSandwichButton;
-    private JLabel prompt7;
+    private JPanel panel1;
     private Order order;
     private JCheckBox extraMeatCheckBox;
     private boolean isToasted = false;
@@ -103,9 +103,8 @@ public class SandwichPanel extends JPanel {
         add(prompt6);
         add(saucesScrollPane);
 
-        add(prompt7);
+
         add(yesButton);
-        add(noButton);
         add(addSandwichButton);
 
 
@@ -197,13 +196,7 @@ public class SandwichPanel extends JPanel {
 
             }
         });
-        noButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                isToasted = false;
 
-            }
-        });
     }
     public BreadType getSelectedBreadType() {
         return (BreadType) breadTypeList.getSelectedItem();
