@@ -1,11 +1,13 @@
 package com.pluralsight.deliciousPOS;
 
 public class BreadType implements Topping {
+    private String name;
     private final double price4Inch;
     private final double price8Inch;
     private final double price12Inch;
 
     BreadType(String name,double price4Inch, double price8Inch, double price12Inch) {
+        this.name=name;
         this.price4Inch = price4Inch;
         this.price8Inch = price8Inch;
         this.price12Inch = price12Inch;
@@ -17,7 +19,7 @@ public class BreadType implements Topping {
 
     @Override
     public String getName() {
-        return null;
+        return name;
     }
 
     @Override

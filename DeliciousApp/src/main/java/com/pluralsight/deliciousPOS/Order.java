@@ -86,8 +86,6 @@ public class Order {
             }
         }
 
-       //orderSummary.append("\nTotal Price: $").append(String.format("%.2f", calculateTotal()));
-
         return orderSummary.toString();
 
 

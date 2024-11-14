@@ -9,6 +9,7 @@ import java.time.format.DateTimeFormatter;
 
 
 import com.pluralsight.deliciousPOS.Order;
+import com.pluralsight.deliciousPOS.Receipt;
 
 public class OrderScreen extends JFrame implements  DrinksPanel.DrinksListener, SandwichOptionsPanel.SandwichOptionsListener, OptionsSizePanel.OptionsSizeListener {
     private JButton sandwichButton;
@@ -71,6 +72,27 @@ public class OrderScreen extends JFrame implements  DrinksPanel.DrinksListener, 
             }
         });
 
+        checkOutButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Receipt.saveReceipt(order);
+                JOptionPane.showMessageDialog(OrderScreen.this, "Receipt saved successfully!");
+
+                order = new Order(); // reset order
+                updateOrderDetails();
+
+
+
+            }
+        });
+        cancelOrderButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                order = new Order(); // reset order
+                updateOrderDetails();
+
+            }
+        });
     }
 
     // Method that display SandwichPanel in the dynamicPanel
