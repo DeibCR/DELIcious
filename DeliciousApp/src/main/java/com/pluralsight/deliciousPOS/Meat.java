@@ -10,7 +10,7 @@ public class Meat implements Topping {
     private  double extraPrice8Inch;
     private  double extraPrice12Inch;
 
-    Meat(String name,double price4Inch, double price8Inch, double price12Inch, double extraPrice4Inch, double extraPrice8Inch, double extraPrice12Inch) {
+   public  Meat(String name,double price4Inch, double price8Inch, double price12Inch, double extraPrice4Inch, double extraPrice8Inch, double extraPrice12Inch) {
         this.name=name;
         this.price4Inch = price4Inch;
         this.price8Inch = price8Inch;
@@ -40,6 +40,6 @@ public class Meat implements Topping {
 
     @Override
     public String toString() {
-        return this.getName().toLowerCase();
+        return this.getName();
     }
 }

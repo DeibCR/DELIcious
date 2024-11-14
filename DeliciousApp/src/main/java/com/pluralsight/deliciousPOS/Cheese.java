@@ -9,7 +9,7 @@ public class Cheese implements Topping {
     private final double extraPrice8Inch;
     private final double extraPrice12Inch;
 
-    Cheese(String name,double price4Inch, double price8Inch, double price12Inch, double extraPrice4Inch, double extraPrice8Inch, double extraPrice12Inch) {
+    public Cheese(String name,double price4Inch, double price8Inch, double price12Inch, double extraPrice4Inch, double extraPrice8Inch, double extraPrice12Inch) {
         this.name=name;
         this.price4Inch = price4Inch;
         this.price8Inch = price8Inch;

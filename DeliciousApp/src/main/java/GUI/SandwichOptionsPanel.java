@@ -9,7 +9,10 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SandwichOptionsPanel extends JPanel implements SizePanel.SizeListener, BreadTypePanel.BreadTypeListener,MeatsPanel.MeatsListener,CheesesPanel.CheesesListener, OtherToppingsPanel.OtherToppingsListener,SaucesPanel.SaucesListener{
+public class SandwichOptionsPanel extends JPanel implements SizePanel.SizeListener, BreadTypePanel02.BreadTypeListener,MeatsPanel.MeatsListener,CheesesPanel.CheesesListener, OtherToppingsPanel.OtherToppingsListener,SaucesPanel.SaucesListener{
+    private static final Color DYNAMIC_PANEL_COLOR = Color.darkGray;
+    private static final Color FONT_COLOR = Color.WHITE;
+    private static final Font FONT_STYLE = new Font("Arial", Font.PLAIN, 18);
     private JPanel mainPanel;
     private JPanel optionsPanel;
     private JPanel dynamicPanel02;
@@ -35,7 +38,7 @@ public class SandwichOptionsPanel extends JPanel implements SizePanel.SizeListen
     public SandwichOptionsPanel(Order order) {
 
 
-        setLayout(new GridLayout(3,1));
+        setLayout(new BorderLayout());
         optionsPanel.setLayout(new GridLayout(0, 2,10,10));
         optionsPanel.add(size);
         optionsPanel.add(bread);
@@ -44,20 +47,26 @@ public class SandwichOptionsPanel extends JPanel implements SizePanel.SizeListen
         optionsPanel.add(otherToppings);
         optionsPanel.add(Sauces);
 
-        buttonPanel.setLayout(new GridLayout(2,0));
-        buttonPanel.add(toastedButton).setSize(120,45);
+
+        //For the addSandwich and toasted Buttons
+        buttonPanel.setPreferredSize(new Dimension(0, 55)); // Adjust height as needed
+        buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
+        toastedButton.setPreferredSize(new Dimension(120, 45));
+        addSandwichButton.setPreferredSize(new Dimension(120, 45));
+        buttonPanel.add(toastedButton);
         buttonPanel.add(addSandwichButton);
 
 
-        dynamicPanel02.setLayout(new GridLayout(1,0));
-        dynamicPanel02.setBackground(Color.darkGray);
+
+        dynamicPanel02.setLayout(new GridLayout(1, 0));
+        dynamicPanel02.setBackground(DYNAMIC_PANEL_COLOR);
 
 
 
 
-        add(optionsPanel);
-        add(dynamicPanel02);
-        add(buttonPanel);
+        add(optionsPanel, BorderLayout.NORTH);
+        add(dynamicPanel02, BorderLayout.CENTER);
+        add(buttonPanel, BorderLayout.SOUTH);
         //add(addSandwichButton);
 
 
@@ -123,12 +132,21 @@ public class SandwichOptionsPanel extends JPanel implements SizePanel.SizeListen
                 System.out.println("Selected Meats: " + selectedMeats);
                 System.out.println("Selected Cheeses: " + selectedCheeses);
 
+                List<Topping> allToppings = new ArrayList<>();
+
+                for (Meat meat : selectedMeats) {
+                    allToppings.add(meat);
+                }
+
+
+                for (Cheese cheese : selectedCheeses) {
+                    allToppings.add(cheese);
+                }
+
                 List<R_Topping> selectedOtherToppings= otherToppingsPanel.getJListOtherToppings().getSelectedValuesList();
                 List<Sauce> selectedSauces= saucesPanel.getJListSauces().getSelectedValuesList();
 
-                List<Topping> allToppings = new ArrayList<>();
-                allToppings.addAll(selectedMeats);
-                allToppings.addAll(selectedCheeses);
+
                 allToppings.addAll(selectedOtherToppings);
                 allToppings.addAll(selectedSauces);
 
@@ -168,119 +186,61 @@ public class SandwichOptionsPanel extends JPanel implements SizePanel.SizeListen
     }
 
     private void displayOptionsSizePanel() {
-        if (dynamicPanel02 == null) {
-            System.out.println("Error: dynamicPanel is not initialized.");
-            return;
-        }
-
-        dynamicPanel02.removeAll(); //to remove existing content in  the panel
-
-
-        sizePanel=new SizePanel(order);
+        displayPanel(sizePanel=new SizePanel(order));
         sizePanel.setSizeListener(this);
-        sizePanel.setBackground(Color.darkGray);
-        dynamicPanel02.add(sizePanel,BorderLayout.CENTER);
-
-        dynamicPanel02.revalidate();
-        dynamicPanel02.repaint();
-
-
-
     }
 
     private void displayBreadTypePanel() {
-        if (dynamicPanel02 == null) {
-            System.out.println("Error: dynamicPanel is not initialized.");
-            return;
-        }
-
-        dynamicPanel02.removeAll(); //to remove existing content in  the panel
-
-        breadTypePanel02=new BreadTypePanel02(order);
+        displayPanel(breadTypePanel02=new BreadTypePanel02(order));
         breadTypePanel02.setBreadTypeListener(this);
-        breadTypePanel02.setBackground(Color.darkGray);
-        dynamicPanel02.add(breadTypePanel02,BorderLayout.CENTER);
-
-        dynamicPanel02.revalidate();
-        dynamicPanel02.repaint();
-
-
-
     }
 
     private void displayMeatsPanel() {
-        if (dynamicPanel02 == null) {
-            System.out.println("Error: dynamicPanel is not initialized.");
-            return;
-        }
-
-        dynamicPanel02.removeAll(); //to remove existing content in  the panel
-
-        meatsPanel=new MeatsPanel(order);
+        displayPanel(meatsPanel=new MeatsPanel(order));
         meatsPanel.setMeatListener(this);
-        meatsPanel.setBackground(Color.darkGray);
-        dynamicPanel02.add(meatsPanel,BorderLayout.CENTER);
-
-        dynamicPanel02.revalidate();
-        dynamicPanel02.repaint();
-
     }
 
     private void displayCheesePanel() {
-        if (dynamicPanel02 == null) {
-            System.out.println("Error: dynamicPanel is not initialized.");
-            return;
-        }
-
-        dynamicPanel02.removeAll(); //to remove existing content in  the panel
-
-        cheesesPanel=new CheesesPanel(order);
+        displayPanel(cheesesPanel=new CheesesPanel(order));
         cheesesPanel.setCheeseListener(this);
-        cheesesPanel.setBackground(Color.darkGray);
-        dynamicPanel02.add(cheesesPanel,BorderLayout.CENTER);
-
-        dynamicPanel02.revalidate();
-        dynamicPanel02.repaint();
-
     }
 
     private void displayOtherOptionsPanel() {
-        if (dynamicPanel02 == null) {
-            System.out.println("Error: dynamicPanel is not initialized.");
-            return;
-        }
-
-        dynamicPanel02.removeAll(); //to remove existing content in  the panel
-
-        otherToppingsPanel=new OtherToppingsPanel(order);
+        displayPanel(otherToppingsPanel=new OtherToppingsPanel(order));
         otherToppingsPanel.setOtherToppingsListener(this);
-        otherToppingsPanel.setBackground(Color.darkGray);
-        dynamicPanel02.add(otherToppingsPanel,BorderLayout.CENTER);
-
-        dynamicPanel02.revalidate();
-        dynamicPanel02.repaint();
-
     }
 
     private void displaySaucesPanel() {
+       displayPanel(saucesPanel=new SaucesPanel(order));
+        saucesPanel.setSaucesListener(this);
+    }
+
+    //Helper method to display panels
+    private void displayPanel(JPanel panel) {
         if (dynamicPanel02 == null) {
             System.out.println("Error: dynamicPanel is not initialized.");
             return;
         }
 
-        dynamicPanel02.removeAll(); //to remove existing content in  the panel
-
-        saucesPanel=new SaucesPanel(order);
-        saucesPanel.setSaucesListener(this);
-        saucesPanel.setBackground(Color.darkGray);
-        dynamicPanel02.add(saucesPanel,BorderLayout.CENTER);
-
+        dynamicPanel02.removeAll();
+        setStyle(panel, DYNAMIC_PANEL_COLOR, FONT_STYLE, FONT_COLOR);
+        dynamicPanel02.add(panel, BorderLayout.CENTER);
         dynamicPanel02.revalidate();
         dynamicPanel02.repaint();
 
     }
+    //Helper method to apply style recursive
+    private void setStyle(Component component, Color backgroundColor, Font font, Color fontColor) {
+        component.setBackground(backgroundColor);
+        component.setFont(font);
+        if (component instanceof JComponent) {
+            ((JComponent) component).setForeground(fontColor);
+        }
 
-
-
-
+        if (component instanceof Container) {
+            for (Component child : ((Container) component).getComponents()) {
+                setStyle(child, backgroundColor, font, fontColor);
+            }
+        }
+    }
 }

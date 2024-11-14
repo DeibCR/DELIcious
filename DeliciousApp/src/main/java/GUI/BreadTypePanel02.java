@@ -14,7 +14,7 @@ public class BreadTypePanel02 extends JPanel {
     private JList<BreadType> breadType;
 
 
-    private BreadTypePanel.BreadTypeListener breadTypeListener;
+    private BreadTypePanel02.BreadTypeListener breadTypeListener;
 
     public BreadTypePanel02(Order order) {
         setLayout(new BorderLayout());
@@ -35,7 +35,7 @@ public class BreadTypePanel02 extends JPanel {
 
     }
 
-    public void setBreadTypeListener(BreadTypePanel.BreadTypeListener listener) {
+    public void setBreadTypeListener(BreadTypePanel02.BreadTypeListener listener) {
         this.breadTypeListener = listener;
     }
 

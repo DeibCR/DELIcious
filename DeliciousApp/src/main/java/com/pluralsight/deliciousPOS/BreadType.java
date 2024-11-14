@@ -7,10 +7,11 @@ public class BreadType implements Topping {
     private final double price12Inch;
 
     BreadType(String name,double price4Inch, double price8Inch, double price12Inch) {
+        this.name=name;
         this.price4Inch = price4Inch;
         this.price8Inch = price8Inch;
         this.price12Inch = price12Inch;
-        this.name=name;
+
     }
 
 
