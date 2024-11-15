@@ -55,7 +55,7 @@ public class SandwichOptionsPanel extends JPanel implements SizePanel.SizeListen
         buttonPanel.setPreferredSize(new Dimension(0, 55)); // Adjust height as needed
         buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
         toastedButton.setPreferredSize(new Dimension(120, 45));
-        addSandwichButton.setPreferredSize(new Dimension(120, 45));
+        addSandwichButton.setPreferredSize(new Dimension(220, 45));
         buttonPanel.add(toastedButton);
         buttonPanel.add(addSandwichButton);
 
@@ -229,7 +229,6 @@ public class SandwichOptionsPanel extends JPanel implements SizePanel.SizeListen
             System.out.println("Error: dynamicPanel is not initialized.");
             return;
         }
-
         dynamicPanel02.removeAll();
         setStyle(panel, DYNAMIC_PANEL_COLOR, FONT_STYLE, FONT_COLOR);
         dynamicPanel02.add(panel, BorderLayout.CENTER);

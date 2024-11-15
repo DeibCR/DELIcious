@@ -163,6 +163,7 @@
             <constraints/>
             <properties>
               <contentAreaFilled value="false"/>
+              <font size="18"/>
               <foreground color="-1484275"/>
               <opaque value="false"/>
               <text value="Add Sandwich"/>
@@ -173,6 +174,7 @@
             <properties>
               <borderPainted value="true"/>
               <contentAreaFilled value="false"/>
+              <font size="16"/>
               <foreground color="-1054402"/>
               <text value="Toasted"/>
             </properties>

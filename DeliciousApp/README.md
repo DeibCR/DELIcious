@@ -2,6 +2,8 @@
 
 # Deli-cious POS System 
 
+![ Logo](src/main/resources/images/logo01.png)
+
 #### Student: Deiber Villalobos
 
 #### Multisite App Dev - Year Up United
