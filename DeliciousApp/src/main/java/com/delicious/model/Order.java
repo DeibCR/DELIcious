@@ -81,7 +81,7 @@ public class Order {
         }
 
         if (!chips.isEmpty()) {
-            orderSummary.append("\nChips:\n");
+            orderSummary.append("\nSide:\n");
             for (Chip chip : chips) {
                 orderSummary.append("- ").append(chip.getChip())
                         .append("\n");
