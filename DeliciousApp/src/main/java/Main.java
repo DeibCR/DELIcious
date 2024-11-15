@@ -1,4 +1,4 @@
-import view.HomeScreenGUI;
+import com.delicious.view.HomeScreenGUI;
 
 import javax.swing.*;
 

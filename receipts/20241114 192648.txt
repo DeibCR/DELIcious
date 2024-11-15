@@ -1,0 +1,24 @@
+Order Summary:
+
+Sandwich 1:
+Size: EIGHT_INCH, Bread Type: WHITE, Toasted: Yes
+Toppings:
+ - STEAK: $2.00
+ - CHICKEN: $1.00
+ - AMERICAN: $1.50
+ - PROVOLONE: $0.60
+ - Lettuce: $0.00
+ - Peppers: $0.00
+ - Onions: $0.00
+ - Tomatoes: $0.00
+ - Mayo: $0.00
+ - Mustard: $0.00
+ - Ketchup: $0.00
+Total Price: $12.10
+
+Drinks:
+- Drink Name: MOCKTAIL
+Size: LARGE
+Total Price: $3.00
+
+Total: $15.10
