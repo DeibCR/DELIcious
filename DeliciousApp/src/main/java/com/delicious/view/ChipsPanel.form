@@ -64,7 +64,7 @@
           <component id="3c42b" class="javax.swing.JButton" binding="addChipsButton">
             <constraints/>
             <properties>
-              <foreground color="-1446161"/>
+              <foreground color="-1484275"/>
               <preferredSize width="87" height="30"/>
               <text value="Add Chip"/>
             </properties>

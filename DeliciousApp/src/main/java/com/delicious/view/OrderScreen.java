@@ -183,7 +183,7 @@ public class OrderScreen extends JFrame implements  DrinksPanel.DrinksListener,C
 
     @Override
     public void onChipsAdded() {
-
+        updateOrderDetails();
     }
 
     //method that start a timer and updates that time and date

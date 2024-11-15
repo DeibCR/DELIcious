@@ -16,7 +16,7 @@
           </grid>
         </constraints>
         <properties>
-          <background color="-13750738"/>
+          <background color="-15047020"/>
         </properties>
         <border type="none"/>
         <children>
@@ -27,11 +27,13 @@
               </grid>
             </constraints>
             <properties>
+              <background color="-15185772"/>
               <borderPainted value="false"/>
-              <contentAreaFilled value="false"/>
+              <contentAreaFilled value="true"/>
+              <font size="18"/>
               <foreground color="-1446161"/>
               <horizontalTextPosition value="0"/>
-              <opaque value="false"/>
+              <opaque value="true"/>
               <text value="Sizes"/>
               <verticalAlignment value="0"/>
               <verticalTextPosition value="0"/>
@@ -44,11 +46,13 @@
               </grid>
             </constraints>
             <properties>
+              <background color="-15185772"/>
               <borderPainted value="false"/>
-              <contentAreaFilled value="false"/>
+              <contentAreaFilled value="true"/>
+              <font size="18"/>
               <foreground color="-1446161"/>
               <horizontalTextPosition value="0"/>
-              <opaque value="false"/>
+              <opaque value="true"/>
               <text value="Cheese"/>
               <verticalAlignment value="0"/>
               <verticalTextPosition value="0"/>
@@ -61,12 +65,14 @@
               </grid>
             </constraints>
             <properties>
+              <background color="-15185772"/>
               <borderPainted value="false"/>
-              <contentAreaFilled value="false"/>
+              <contentAreaFilled value="true"/>
+              <font size="18"/>
               <foreground color="-1446161"/>
               <horizontalTextPosition value="0"/>
               <margin top="0" left="0" bottom="0" right="0"/>
-              <opaque value="false"/>
+              <opaque value="true"/>
               <text value="Breads"/>
               <verticalAlignment value="0"/>
               <verticalTextPosition value="0"/>
@@ -79,11 +85,13 @@
               </grid>
             </constraints>
             <properties>
+              <background color="-15185772"/>
               <borderPainted value="false"/>
-              <contentAreaFilled value="false"/>
+              <contentAreaFilled value="true"/>
+              <font size="18"/>
               <foreground color="-1446161"/>
               <horizontalTextPosition value="0"/>
-              <opaque value="false"/>
+              <opaque value="true"/>
               <text value="Meats"/>
               <verticalAlignment value="0"/>
               <verticalTextPosition value="0"/>
@@ -96,11 +104,13 @@
               </grid>
             </constraints>
             <properties>
+              <background color="-15185772"/>
               <borderPainted value="false"/>
-              <contentAreaFilled value="false"/>
+              <contentAreaFilled value="true"/>
+              <font size="18"/>
               <foreground color="-1446161"/>
               <horizontalTextPosition value="0"/>
-              <opaque value="false"/>
+              <opaque value="true"/>
               <text value="Other toppings"/>
               <verifyInputWhenFocusTarget value="false"/>
               <verticalAlignment value="0"/>
@@ -114,8 +124,10 @@
               </grid>
             </constraints>
             <properties>
+              <background color="-15185772"/>
               <borderPainted value="false"/>
-              <contentAreaFilled value="false"/>
+              <contentAreaFilled value="true"/>
+              <font size="18"/>
               <foreground color="-1446161"/>
               <horizontalTextPosition value="0"/>
               <text value="Sauces"/>
@@ -151,7 +163,7 @@
             <constraints/>
             <properties>
               <contentAreaFilled value="false"/>
-              <foreground color="-1446161"/>
+              <foreground color="-1484275"/>
               <opaque value="false"/>
               <text value="Add Sandwich"/>
             </properties>
@@ -161,7 +173,7 @@
             <properties>
               <borderPainted value="true"/>
               <contentAreaFilled value="false"/>
-              <foreground color="-1446161"/>
+              <foreground color="-1054402"/>
               <text value="Toasted"/>
             </properties>
           </component>
