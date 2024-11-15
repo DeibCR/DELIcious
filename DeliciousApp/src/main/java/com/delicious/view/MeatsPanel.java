@@ -17,16 +17,17 @@ public class MeatsPanel extends JPanel{
 
     public  MeatsPanel(Order order){
         setLayout(new BorderLayout());
-        mainPanel = new JPanel(new BorderLayout());
+        mainPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         mainPanel.setBackground(Color.orange);
        meatsList = new JList<>();
 
 
 
         meatsList.setListData(loadMeatData());
-        meatsList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         JScrollPane meatScrollPane=new JScrollPane(meatsList);
-        meatScrollPane.setPreferredSize(new Dimension(200, 150));
+        meatsList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+
+        meatScrollPane.setPreferredSize(new Dimension(400, 350));
 
 
         mainPanel.add(meatScrollPane, BorderLayout.CENTER);

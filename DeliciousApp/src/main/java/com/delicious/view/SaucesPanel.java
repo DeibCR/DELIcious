@@ -15,16 +15,16 @@ public class SaucesPanel extends JPanel {
 
     public  SaucesPanel(Order order){
         setLayout(new BorderLayout());
-        mainPanel = new JPanel(new BorderLayout());
+        mainPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         saucesList = new JList<>();
 
 
 
         JScrollPane saucesScrollPane= new JScrollPane(saucesList);
         saucesList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-        saucesScrollPane.setPreferredSize(new Dimension(200, 150));
-        saucesList.setListData(Sauce.values());
 
+        saucesList.setListData(Sauce.values());
+        saucesScrollPane.setPreferredSize(new Dimension(400, 350));
 
         mainPanel.add(saucesScrollPane, BorderLayout.CENTER);
         add(mainPanel, BorderLayout.CENTER);

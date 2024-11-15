@@ -35,9 +35,10 @@ public class OrderScreen extends JFrame implements  DrinksPanel.DrinksListener,C
     public OrderScreen() {
         setTitle("Order Screen");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(800, 600);
-        setLocationRelativeTo(null);
         setContentPane(mainPanel);
+
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        setUndecorated(true);
 
 
         order = new Order();
@@ -91,6 +92,8 @@ public class OrderScreen extends JFrame implements  DrinksPanel.DrinksListener,C
             public void actionPerformed(ActionEvent e) {
                 order = new Order(); // reset order
                 updateOrderDetails();
+                new HomeScreenGUI().setVisible(true);
+                dispose();
 
             }
         });

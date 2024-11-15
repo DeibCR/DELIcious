@@ -15,16 +15,17 @@ public class OtherToppingsPanel extends JPanel {
 
     public  OtherToppingsPanel(Order order){
         setLayout(new BorderLayout());
-        mainPanel = new JPanel(new BorderLayout());
+        mainPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         otherToppingsList = new JList<>();
 
 
 
         JScrollPane otherToppingsScrollPane= new JScrollPane(otherToppingsList);
         otherToppingsList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-        otherToppingsScrollPane.setPreferredSize(new Dimension(200, 150));
         otherToppingsList.setListData(R_Topping.values());
 
+
+        otherToppingsScrollPane.setPreferredSize(new Dimension(400, 350));
 
         mainPanel.add(otherToppingsScrollPane, BorderLayout.CENTER);
         add(mainPanel, BorderLayout.CENTER);

@@ -18,15 +18,15 @@ public class CheesesPanel extends JPanel{
 
     public  CheesesPanel(Order order){
         setLayout(new BorderLayout());
-        mainPanel = new JPanel(new BorderLayout());
+        mainPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         cheeseList = new JList<>();
 
 
 
         cheeseList.setListData(loadCheeseData());
-        cheeseList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         JScrollPane breadScrollPane=new JScrollPane(cheeseList);
-        breadScrollPane.setPreferredSize(new Dimension(200, 150));
+        cheeseList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        breadScrollPane.setPreferredSize(new Dimension(400, 350));
 
 
         mainPanel.add(breadScrollPane, BorderLayout.CENTER);

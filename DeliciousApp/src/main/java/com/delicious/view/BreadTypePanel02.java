@@ -16,14 +16,16 @@ public class BreadTypePanel02 extends JPanel {
 
     public BreadTypePanel02(Order order) {
         setLayout(new BorderLayout());
-        mainPanel = new JPanel(new BorderLayout());
+        mainPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+
         breadType = new JList<>();
 
 
         breadType.setListData(loadBreadData());
-        breadType.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         JScrollPane breadScrollPane=new JScrollPane(breadType);
-        breadScrollPane.setPreferredSize(new Dimension(200, 150));
+        breadType.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        breadScrollPane.setPreferredSize(new Dimension(400, 350));
+
 
 
         mainPanel.add(breadScrollPane, BorderLayout.CENTER);

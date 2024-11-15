@@ -11,6 +11,7 @@ public class HomeScreenGUI extends JFrame {
     private JLabel logoIcon;
     private JPanel buttomsPanel;
     private JButton newOrderButton;
+    private JButton close;
 
     public HomeScreenGUI() {
         setTitle("DELI cious");
@@ -38,6 +39,12 @@ public class HomeScreenGUI extends JFrame {
                 dispose();
 
 
+            }
+        });
+        close.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
             }
         });
     }

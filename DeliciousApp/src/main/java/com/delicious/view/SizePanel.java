@@ -13,7 +13,7 @@ public class SizePanel extends JPanel {
 
     public SizePanel(Order order) {
         setLayout(new BorderLayout());
-        mainPanel = new JPanel(new BorderLayout());
+        mainPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         mainPanel.setBackground(Color.orange);
         comboBoxSize = new JComboBox<>();
 
