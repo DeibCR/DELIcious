@@ -11,3 +11,5 @@
 
 
 ## Usage
+
+![ Home screen GUI](src/main/resources/images/homeScreen.png)
