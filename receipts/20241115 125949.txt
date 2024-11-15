@@ -1,0 +1,12 @@
+Order Summary:
+
+Sandwich 1:
+Size: EIGHT_INCH, Bread Type: WHEAT, Toasted: Yes
+Toppings:
+ - HAM: $2.00
+ - AMERICAN: $1.50
+ - Peppers: $0.00
+ - Mustard: $0.00
+Total Price: $10.50
+
+Total: $10.50

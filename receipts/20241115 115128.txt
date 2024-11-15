@@ -1,0 +1,28 @@
+Order Summary:
+
+Sandwich 1:
+Size: EIGHT_INCH, Bread Type: WRAP, Toasted: Yes
+Toppings:
+ - CHICKEN: $2.00
+ - BACON: $1.00
+ - SWISS: $1.50
+ - Peppers: $0.00
+ - Onions: $0.00
+ - Tomatoes: $0.00
+ - Cucumbers: $0.00
+ - Guacamole: $0.00
+ - Mayo: $0.00
+ - Vinaigrette: $0.00
+Total Price: $11.50
+
+Drinks:
+- Drink Name: MOCKTAIL
+Size: SMALL
+Total Price: $2.00
+
+Side:
+- Chip Name: DORITOS
+Size: SMALL
+Total Price: $1.50
+
+Total: $15.00
