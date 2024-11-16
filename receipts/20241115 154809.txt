@@ -1,0 +1,30 @@
+Order Summary:
+
+Sandwich 1:
+Size: TWELVE_INCH, Bread Type: WHITE, Toasted: Yes
+Toppings:
+ - STEAK: $3.00
+ - ROAST_BEEF: $1.50
+ - BACON: $1.50
+ - AMERICAN: $2.25
+ - PROVOLONE: $0.90
+ - CHEDDAR: $0.90
+ - Peppers: $0.00
+ - Onions: $0.00
+ - Tomatoes: $0.00
+ - Jalapenos: $0.00
+ - Cucumbers: $0.00
+ - Ranch: $0.00
+Total Price: $18.55
+
+Drinks:
+- Drink Name: MOCKTAIL
+Size: MEDIUM
+Total Price: $2.50
+
+Side:
+- Chip Name: PATACONES
+Size: SMALL
+Total Price: $1.50
+
+Total: $22.55

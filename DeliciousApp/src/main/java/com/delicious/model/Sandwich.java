@@ -7,8 +7,8 @@ import java.util.List;
 
 public class Sandwich implements Priceable {
     private SandwichSize size;
-    private BreadType breadType;
-    private boolean isToasted;
+    private final BreadType breadType;
+    private final boolean isToasted;
     private final List<Topping> toppings;
 
 
@@ -22,6 +22,12 @@ public class Sandwich implements Priceable {
 
     }
 
+    /*
+    *
+    * Methods for future implementation od modify the sandwich, add or remove a topping from
+    * a sandwich already created
+    *
+     */
     public void addTopping(Topping topping) {
         toppings.add(topping);
     }
@@ -40,7 +46,6 @@ public class Sandwich implements Priceable {
     public double calculatePrice() {
         double totalPrice = getBasePrice();
 
-        // Count meats and cheeses in the toppings list
         int meatCount = 0;
         int cheeseCount = 0;
 
@@ -58,31 +63,35 @@ public class Sandwich implements Priceable {
 
             } else if (topping instanceof Cheese) {
                 isExtra = cheeseCount > 1;// count cheese as an extra if 1 meat is already selected
-
             }
 
-            // Apply the topping price (extra or regular)
-            System.out.println("Total Price: $" + totalPrice);
             totalPrice += getToppingPrice(topping, isExtra);
         }
 
         return totalPrice;
     }
 
-
+    /**
+    *
+    *Calculates the price of a topping based on its type and whether it is extra.(helper method)
+     *
+    * @param topping the topping for the price that is being calculated, must be a meat or cheese
+    * @param isExtra a boolean that indicates if the topping is extra
+     * @return the price of topping (extra or not, or 0.0 if the topping it is not cheese/meat
+     **/
 
     private double getToppingPrice(Topping topping, boolean isExtra) {
         if (isExtra) {
             if (topping instanceof Meat) {
-                return topping.calculatePrice(size, true); // Price for extra meat
+                return topping.calculatePrice(size, true);
             } else if (topping instanceof Cheese) {
-                return topping.calculatePrice(size, true); // Price for extra cheese
+                return topping.calculatePrice(size, true);
             }
         } else {
             if (topping instanceof Meat) {
-                return topping.calculatePrice(size, false); // Price for regular meat
+                return topping.calculatePrice(size, false);
             } else if (topping instanceof Cheese) {
-                return topping.calculatePrice(size, false); // Price for regular cheese
+                return topping.calculatePrice(size, false);
             }
         }
         return 0.0;
@@ -139,24 +148,5 @@ public class Sandwich implements Priceable {
         this.size = size;
     }
 
-    public BreadType getBreadType() {
-        return breadType;
-    }
 
-    public void setBreadType(BreadType breadType) {
-        this.breadType = breadType;
-    }
-
-    public List<Topping> getToppings() {
-        return toppings;
-    }
-
-
-    public boolean isToasted() {
-        return isToasted;
-    }
-
-    public void setToasted(boolean toasted) {
-        isToasted = toasted;
-    }
 }
