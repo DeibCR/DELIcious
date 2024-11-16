@@ -25,27 +25,32 @@ public class Order {
     }
 
 
-
-
     public void addSandwich(Sandwich sandwich) {
-        sandwiches.add(sandwich);
-    }
-
-
-    public void addDrink(Drink selectedDrink, DrinkSize size) {
-
-        if (selectedDrink != null && size != null) {
-
-            Drink newDrink = new Drink(selectedDrink.getName(), size, selectedDrink.getSmall(), selectedDrink.getMedium(), selectedDrink.getLarge());
-            drinks.add(newDrink);
+        if (sandwich != null) {
+            sandwiches.add(sandwich);
         }
     }
 
-
-    public void addChip(Chip chip, Chips selectedSize) {
-        chips.add(chip);
+    public void addDrink(Drink selectedDrink, DrinkSize size) {
+        if (selectedDrink != null && size != null) {
+                selectedDrink.setSize(size);
+                drinks.add(selectedDrink);
+        }
     }
 
+    public void addChip(Chip chip, Chips selectedSize) {
+        if (chip != null && selectedSize != null) {
+             chip.setSize(selectedSize);
+             chips.add(chip);
+        }
+    }
+
+    /**
+     * Calculate the total price for objects in list : sandwich,drinks,chips.
+     *
+     * @return  the total of price of each object
+     *
+     */
     public double calculateTotal(){
         double totalPrice=0.0;
         for (Sandwich sandwich: sandwiches){
@@ -61,11 +66,17 @@ public class Order {
 
     }
 
+    /**
+     * Generates a  summary of the order, with sandwiches, drinks, and chips.
+     *
+     * @return a formatted string with the order details, including all items
+     *         in the sandwiches, drinks, and chips respective lists
+     */
     public String displayOrderDetails(){
         StringBuilder orderSummary= new StringBuilder("Order Summary:\n");
 
 
-        //display every sandwich with details
+
         for (int i = 0; i < sandwiches.size(); i++) {
             orderSummary.append("\nSandwich ").append(i + 1).append(":\n")
                     .append(sandwiches.get(i).getSandwich())
@@ -97,6 +108,5 @@ public class Order {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         return receiptDate.format(formatter);
     }
-
 
 }

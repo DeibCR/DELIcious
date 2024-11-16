@@ -2,7 +2,7 @@ package com.delicious.model;
 
 import com.delicious.enums.DrinkSize;
 
-public  class Drink  {
+public  class Drink {
 
 
     private String name;
