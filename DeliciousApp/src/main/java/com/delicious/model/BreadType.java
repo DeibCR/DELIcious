@@ -8,7 +8,7 @@ public class BreadType implements Topping {
     private final double price8Inch;
     private final double price12Inch;
 
-    BreadType(String name,double price4Inch, double price8Inch, double price12Inch) {
+    public BreadType(String name,double price4Inch, double price8Inch, double price12Inch) {
         this.name=name;
         this.price4Inch = price4Inch;
         this.price8Inch = price8Inch;
@@ -24,6 +24,12 @@ public class BreadType implements Topping {
         return name;
     }
 
+    /**
+     * Calculates the price of the bread based on the sandwich size and whether it's considered "extra".
+     * @param size The size of the sandwich (4-inch, 8-inch, or 12-inch)
+     * @param isExtra Whether the bread is considered an extra topping (affects price if applicable)
+     * @return the calculated price
+     */
     @Override
     public double calculatePrice(SandwichSize size, boolean isExtra) {
         return switch (size) {
