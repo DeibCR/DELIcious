@@ -2,14 +2,12 @@ package com.delicious.view;
 
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Objects;
 
 public class HomeScreenGUI extends JFrame {
     private JPanel mainPanel;
     private JLabel logoIcon;
-    private JPanel buttomsPanel;
+    private JPanel buttonsPanel;
     private JButton newOrderButton;
     private JButton close;
 
@@ -30,23 +28,15 @@ public class HomeScreenGUI extends JFrame {
 
 
 
-        newOrderButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        newOrderButton.addActionListener(e -> {
 
-                OrderScreen orderScreen= new OrderScreen();
-                orderScreen.setVisible(true);
-                dispose();
+            OrderScreen orderScreen= new OrderScreen();
+            orderScreen.setVisible(true);
+            dispose();
 
 
-            }
         });
-        close.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-            }
-        });
+        close.addActionListener(e -> dispose());
     }
 
 

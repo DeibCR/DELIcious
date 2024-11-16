@@ -7,8 +7,6 @@ import com.delicious.model.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -75,108 +73,64 @@ public class SandwichOptionsPanel extends JPanel implements SizePanel.SizeListen
 
 
 
-        size.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                displayOptionsSizePanel();
+        size.addActionListener(e -> displayOptionsSizePanel());
+        bread.addActionListener(e -> displayBreadTypePanel());
 
+        meats.addActionListener(e -> displayMeatsPanel());
+        cheeses.addActionListener(e -> displayCheesePanel());
+        otherToppings.addActionListener(e -> displayOtherOptionsPanel());
+        Sauces.addActionListener(e -> displaySaucesPanel());
+
+        addSandwichButton.addActionListener(e -> {
+            SandwichSize selectedSize = (SandwichSize) sizePanel.getComboBoxSize().getSelectedItem();
+            BreadType selectedBread = breadTypePanel02.getJlistBread().getSelectedValue();
+
+            if (selectedBread == null || selectedSize == null) {
+                JOptionPane.showMessageDialog(SandwichOptionsPanel.this, "Please select both bread and sandwich size.");
+                return;
             }
-        });
-        bread.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                displayBreadTypePanel();
 
+            List<Meat> selectedMeats= meatsPanel.getJListMeats().getSelectedValuesList();
+            List<Cheese> selectedCheeses= cheesesPanel.getJListCheese().getSelectedValuesList();
+
+            if ((selectedMeats == null || selectedMeats.isEmpty()) && (selectedCheeses == null || selectedCheeses.isEmpty())) {
+                JOptionPane.showMessageDialog(SandwichOptionsPanel.this, "Please select at least one meat or cheese.");
+                return;
             }
-        });
 
-        meats.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                displayMeatsPanel();
+            System.out.println("Selected Meats: " + selectedMeats);
+            System.out.println("Selected Cheeses: " + selectedCheeses);
 
+            List<Topping> allToppings = new ArrayList<>();
+
+            for (Meat meat : selectedMeats) {
+                allToppings.add(meat);
             }
-        });
-        cheeses.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                displayCheesePanel();
+
+
+            for (Cheese cheese : selectedCheeses) {
+                allToppings.add(cheese);
             }
-        });
-        otherToppings.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                displayOtherOptionsPanel();
 
+            List<R_Topping> selectedOtherToppings= otherToppingsPanel.getJListOtherToppings().getSelectedValuesList();
+            List<Sauce> selectedSauces= saucesPanel.getJListSauces().getSelectedValuesList();
+
+
+            allToppings.addAll(selectedOtherToppings);
+            allToppings.addAll(selectedSauces);
+
+            Sandwich newSandwich= new Sandwich(selectedSize,selectedBread,allToppings,isToasted);
+            order.addSandwich(newSandwich);
+
+            JOptionPane.showMessageDialog(SandwichOptionsPanel.this, "Sandwich added to order!");
+
+            if (sandwichOptionsListener != null) {
+                sandwichOptionsListener.onSandwichAdded();
             }
+
+
         });
-        Sauces.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                displaySaucesPanel();
-
-            }
-        });
-
-        addSandwichButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                SandwichSize selectedSize = (SandwichSize) sizePanel.getComboBoxSize().getSelectedItem();
-                BreadType selectedBread =(BreadType) breadTypePanel02.getJlistBread().getSelectedValue();
-
-                if (selectedBread == null || selectedSize == null) {
-                    JOptionPane.showMessageDialog(SandwichOptionsPanel.this, "Please select both bread and sandwich size.");
-                    return;
-                }
-
-                List<Meat> selectedMeats= meatsPanel.getJListMeats().getSelectedValuesList();
-                List<Cheese> selectedCheeses= cheesesPanel.getJListCheese().getSelectedValuesList();
-
-                if ((selectedMeats == null || selectedMeats.isEmpty()) && (selectedCheeses == null || selectedCheeses.isEmpty())) {
-                    JOptionPane.showMessageDialog(SandwichOptionsPanel.this, "Please select at least one meat or cheese.");
-                    return;
-                }
-
-                System.out.println("Selected Meats: " + selectedMeats);
-                System.out.println("Selected Cheeses: " + selectedCheeses);
-
-                List<Topping> allToppings = new ArrayList<>();
-
-                for (Meat meat : selectedMeats) {
-                    allToppings.add(meat);
-                }
-
-
-                for (Cheese cheese : selectedCheeses) {
-                    allToppings.add(cheese);
-                }
-
-                List<R_Topping> selectedOtherToppings= otherToppingsPanel.getJListOtherToppings().getSelectedValuesList();
-                List<Sauce> selectedSauces= saucesPanel.getJListSauces().getSelectedValuesList();
-
-
-                allToppings.addAll(selectedOtherToppings);
-                allToppings.addAll(selectedSauces);
-
-                Sandwich newSandwich= new Sandwich(selectedSize,selectedBread,allToppings,isToasted);
-                order.addSandwich(newSandwich);
-
-                JOptionPane.showMessageDialog(SandwichOptionsPanel.this, "Sandwich added to order!");
-
-                if (sandwichOptionsListener != null) {
-                    sandwichOptionsListener.onSandwichAdded();
-                }
-
-
-            }
-        });
-        toastedButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                isToasted = true;
-
-            }
-        });
+        toastedButton.addActionListener(e -> isToasted = true);
     }
 
     public void setSandwichOptionsListener(SandwichOptionsListener listener) {
@@ -241,7 +195,7 @@ public class SandwichOptionsPanel extends JPanel implements SizePanel.SizeListen
         component.setBackground(backgroundColor);
         component.setFont(font);
         if (component instanceof JComponent) {
-            ((JComponent) component).setForeground(fontColor);
+            component.setForeground(fontColor);
         }
 
         if (component instanceof Container) {

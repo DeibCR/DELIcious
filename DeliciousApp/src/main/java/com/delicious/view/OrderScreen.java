@@ -49,108 +49,64 @@ public class OrderScreen extends JFrame implements  DrinksPanel.DrinksListener,C
 
 
 
-        sandwichButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //displaySandwichPanel();
-                displaySandwichOptionsPanel();;
+        sandwichButton.addActionListener(e -> {
+            //displaySandwichPanel();
+            displaySandwichOptionsPanel();
 
-            }
         });
-        drinkButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                displayDrinksPanel();
+        drinkButton.addActionListener(e -> displayDrinksPanel());
+        sideButton.addActionListener(e -> displayChipsPanel());
 
-            }
+        checkOutButton.addActionListener(e -> {
+            Receipt.saveReceipt(order);
+            JOptionPane.showMessageDialog(OrderScreen.this, "Receipt saved successfully!");
+
+            order = new Order(); // reset order
+            updateOrderDetails();
+
+
+
         });
-        sideButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                displayChipsPanel();
+        cancelOrderButton.addActionListener(e -> {
+            order = new Order(); // reset order
+            updateOrderDetails();
+            new HomeScreenGUI().setVisible(true);
+            dispose();
 
-            }
-        });
-
-        checkOutButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Receipt.saveReceipt(order);
-                JOptionPane.showMessageDialog(OrderScreen.this, "Receipt saved successfully!");
-
-                order = new Order(); // reset order
-                updateOrderDetails();
-
-
-
-            }
-        });
-        cancelOrderButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                order = new Order(); // reset order
-                updateOrderDetails();
-                new HomeScreenGUI().setVisible(true);
-                dispose();
-
-            }
         });
     }
 
-    // Method that display SandwichPanel in the dynamicPanel
+    // Methods that display SandwichPanel in the dynamicPanel
+
+    private void displayPanel(JPanel panel) {
+        if (dynamicPanel == null) {
+            System.out.println("Error: dynamicPanel is not initialized.");
+            return;
+        }
+
+        dynamicPanel.removeAll();
+        dynamicPanel.add(panel, BorderLayout.CENTER);
+        dynamicPanel.revalidate();
+        dynamicPanel.repaint();
+    }
 
 
     private void displaySandwichOptionsPanel() {
-        if (dynamicPanel == null) {
-            System.out.println("Error: dynamicPanel is not initialized.");
-            return;
-        }
-
-        dynamicPanel.removeAll(); //to remove existing content in  the panel
-
         SandwichOptionsPanel sandwichOptionsPanel = new SandwichOptionsPanel(order);
         sandwichOptionsPanel.setSandwichOptionsListener(this);
-        dynamicPanel.add(sandwichOptionsPanel, BorderLayout.CENTER);
-
-
-
-        dynamicPanel.revalidate(); //refresh
-        dynamicPanel.repaint();
-
+        displayPanel(sandwichOptionsPanel);
     }
 
     private void displayDrinksPanel() {
-        if (dynamicPanel == null) {
-            System.out.println("Error: dynamicPanel is not initialized.");
-            return;
-        }
-
-        dynamicPanel.removeAll(); //to remove existing content in  the panel
-
         DrinksPanel drinksPanel = new DrinksPanel(order);
         drinksPanel.setDrinksListener(this);
-        dynamicPanel.add(drinksPanel, BorderLayout.CENTER);
-
-        dynamicPanel.revalidate(); //refresh
-        dynamicPanel.repaint();
-
+        displayPanel(drinksPanel);
     }
 
     private void displayChipsPanel() {
-        if (dynamicPanel == null) {
-            System.out.println("Error: dynamicPanel is not initialized.");
-            return;
-        }
-
-        dynamicPanel.removeAll(); //to remove existing content in  the panel
-
         ChipsPanel chipsPanel = new ChipsPanel(order);
         chipsPanel.setChipsListener(this);
-        dynamicPanel.add(chipsPanel, BorderLayout.CENTER);
-
-        dynamicPanel.revalidate(); //refresh
-        dynamicPanel.repaint();
-
+        displayPanel(chipsPanel);
     }
 
     private void updateOrderDetails(){
@@ -186,13 +142,10 @@ public class OrderScreen extends JFrame implements  DrinksPanel.DrinksListener,C
 
     //method that start a timer and updates that time and date
     private void startDateTimeUpdater() {
-        timer = new Timer(1000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern(" MM/dd/yyyy  HH:mm:ss");
-                String formattedDateTime = LocalDateTime.now().format(formatter);
-                orderDataTime.setText(formattedDateTime);
-            }
+        timer = new Timer(1000, e -> {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(" MM/dd/yyyy  HH:mm:ss");
+            String formattedDateTime = LocalDateTime.now().format(formatter);
+            orderDataTime.setText(formattedDateTime);
         });
         timer.start();
     }
