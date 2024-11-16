@@ -49,11 +49,5 @@ public class Chip  {
         return this.getName();
     }
 
-    public double getSmall() {
-        return small;
-    }
-
-
-
 
 }

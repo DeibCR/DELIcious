@@ -55,18 +55,6 @@ public  class Drink {
     }
 
 
-    public double getSmall() {
-        return small;
-    }
-
-    public double getMedium() {
-        return medium;
-    }
-
-    public double getLarge() {
-        return large;
-    }
-
     public String toString() {
         return this.getName();
     }
