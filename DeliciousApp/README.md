@@ -78,6 +78,10 @@ The Deli-cious POS System is a Point of Sale (POS) application designed for a sa
 2. **Model Layer**: Manages the business logic and data structures, including Order, Sandwich, and Receipt classes.
 3. **Integration**: File I/O for receipt management ensures transaction data is saved persistently.
 
+## UML
+![ UML](src/main/resources/images/uml.png)
+
+
 ## Future Enhancements
 - **Integration with payment gateways** for credit/debit card transactions.
 - **Support for multi-language interfaces** to cater to diverse audiences.
