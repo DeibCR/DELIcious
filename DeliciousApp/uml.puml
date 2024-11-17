@@ -1,0 +1,242 @@
+@startuml
+
+' Model Classes
+class Order {
+    - List<Sandwich> sandwiches
+    - List<Drink> drinks
+    - List<Chip> chips
+    - LocalDateTime receiptDate
+    + Order()
+    + addSandwich(Sandwich)
+    + addDrink(Drink, DrinkSize)
+    + addChip(Chip, Chips)
+    + calculateTotal(): double
+    + displayOrderDetails(): String
+    + getFormattedReceiptDate(): String
+}
+
+class Sandwich {
+    - SandwichSize size
+    - BreadType breadType
+    - boolean isToasted
+    - List<Topping> toppings
+    + Sandwich(SandwichSize, BreadType, List<Topping>, boolean)
+    + addTopping(Topping)
+    + removeTopping(Topping)
+    + calculatePrice(): double
+    + getSandwich(): String
+    + getSize(): SandwichSize
+    + setSize(SandwichSize)
+}
+
+class Drink {
+    - String name
+    - DrinkSize size
+    - double small
+    - double medium
+    - double large
+    + Drink(String, DrinkSize, double, double, double)
+    + calculatePrice(): double
+    + getDrink(): String
+    + setName(String)
+    + setSize(DrinkSize)
+}
+
+class Chip {
+    - String name
+    - Chips size
+    - double small
+    + Chip(String, Chips, double)
+    + calculatePrice(): double
+    + getChip(): String
+    + setName(String)
+    + setSize(Chips)
+}
+
+interface Priceable {
+    + calculatePrice(): double
+}
+
+interface Topping {
+    + getName(): String
+    + calculatePrice(SandwichSize, boolean): double
+}
+
+class Meat {
+    - String name
+    - double price4Inch
+    - double price8Inch
+    - double price12Inch
+    - double extraPrice4Inch
+    - double extraPrice8Inch
+    - double extraPrice12Inch
+    + Meat(String, double, double, double, double, double, double)
+    + calculatePrice(SandwichSize, boolean): double
+}
+
+class Cheese {
+    - String name
+    - double price4Inch
+    - double price8Inch
+    - double price12Inch
+    - double extraPrice4Inch
+    - double extraPrice8Inch
+    - double extraPrice12Inch
+    + Cheese(String, double, double, double, double, double, double)
+    + calculatePrice(SandwichSize, boolean): double
+}
+
+class BreadType {
+    - String name
+    - double price4Inch
+    - double price8Inch
+    - double price12Inch
+    + BreadType(String, double, double, double)
+    + calculatePrice(SandwichSize, boolean): double
+}
+
+class Receipt {
+    + saveReceipt(Order)
+}
+
+class DataLoader {
+    + loadMeatData(String): List<Meat>
+    + loadCheeseData(String): List<Cheese>
+    + loadBreadData(String): List<BreadType>
+    + loadDrinksData(String): List<Drink>
+    + loadChipData(String): List<Chip>
+}
+
+' GUI Classes
+class OrderScreen {
+    - JButton sandwichButton
+    - JButton sideButton
+    - JButton drinkButton
+    - JLabel customerName
+    - JPanel dateTime
+    - JPanel mainPanel
+    - JPanel dynamicPanel
+    - JScrollPane orderDetailsPanel
+    - JTextArea orderSummaryTextArea
+    - JLabel totalPriceLabel
+    - JButton checkOutButton
+    - JButton cancelOrderButton
+    - JLabel orderDataTime
+    - Order order
+    - JPanel sandwichPanel
+    - JPanel drinksPanel
+    - Timer timer
+    + OrderScreen()
+    + startDateTimeUpdater()
+    + updateOrderDetails()
+    + dispose()
+    + onSandwichAdded()
+    + onDrinksAdded()
+    + onChipsAdded()
+}
+
+class ChipsPanel {
+    - JPanel mainPanel
+    - JPanel sizePanel
+    - JPanel chipsPanel
+    - JPanel buttonPanel
+    - JList<Chip> chipsList
+    - JButton addChipsButton
+    - JLabel prompt1
+    - JComboBox sizeComboBox
+    - ChipsPanel.ChipsListener chipsListener
+    + ChipsPanel(Order)
+    + setChipsListener(ChipsPanel.ChipsListener)
+    + loadChipData(): Chip[]
+    + setStyle(Component, Color, Font, Color)
+}
+
+class SizePanel {
+    - JPanel mainPanel
+    - JComboBox<SandwichSize> comboBoxSize
+    - SizePanel.SizeListener sizeListener
+    + SizePanel(Order)
+    + setSizeListener(SizePanel.SizeListener)
+    + getComboBoxSize(): JComboBox<SandwichSize>
+}
+
+class SaucesPanel {
+    - JPanel mainPanel
+    - JList<Sauce> saucesList
+    - SaucesListener saucesListener
+    + SaucesPanel(Order)
+    + setSaucesListener(SaucesPanel.SaucesListener)
+    + getJListSauces(): JList<Sauce>
+}
+
+class OtherToppingsPanel {
+    - JPanel mainPanel
+    - JList<R_Topping> otherToppingsList
+    - OtherToppingsListener otherToppingsListener
+    + OtherToppingsPanel(Order)
+    + setOtherToppingsListener(OtherToppingsPanel.OtherToppingsListener)
+    + getJListOtherToppings(): JList<R_Topping>
+}
+
+class MeatsPanel {
+    - JPanel mainPanel
+    - JList<Meat> meatsList
+    - MeatsListener meatsListener
+    + MeatsPanel(Order)
+    + setMeatListener(MeatsPanel.MeatsListener)
+    + getJListMeats(): JList<Meat>
+    + loadMeatData(): Meat[]
+}
+
+class CheesesPanel {
+    - JPanel mainPanel
+    - JList<Cheese> cheeseList
+    - CheesesListener cheeseListener
+    + CheesesPanel(Order)
+    + setCheeseListener(CheesesPanel.CheesesListener)
+    + getJListCheese(): JList<Cheese>
+    + loadCheeseData(): Cheese[]
+}
+
+class BreadTypePanel02 {
+    - JPanel mainPanel
+    - JList<BreadType> breadType
+    - BreadTypePanel02.BreadTypeListener breadTypeListener
+    + BreadTypePanel02(Order)
+    + setBreadTypeListener(BreadTypePanel02.BreadTypeListener)
+    + getJlistBread(): JList<BreadType>
+    + loadBreadData(): BreadType[]
+}
+
+class HomeScreenGUI {
+    - JPanel mainPanel
+    - JLabel logoIcon
+    - JPanel buttonsPanel
+    - JButton newOrderButton
+    - JButton close
+    + HomeScreenGUI()
+}
+
+' Relationships
+OrderScreen "1" --> "*" SandwichOptionsPanel
+OrderScreen "1" --> "*" DrinksPanel
+OrderScreen "1" --> "*" ChipsPanel
+OrderScreen "1" --> "*" HomeScreenGUI
+
+SandwichOptionsPanel "1" --> "*" SizePanel
+SandwichOptionsPanel "1" --> "*" BreadTypePanel02
+SandwichOptionsPanel "1" --> "*" MeatsPanel
+SandwichOptionsPanel "1" --> "*" CheesesPanel
+SandwichOptionsPanel "1" --> "*" OtherToppingsPanel
+SandwichOptionsPanel "1" --> "*" SaucesPanel
+SandwichOptionsPanel "1" --> "*" Order
+SandwichOptionsPanel "1" --> "1" SandwichOptionsListener
+
+DrinksPanel "1" --> "*" Drink
+DrinksPanel "1" --> "*" DrinkSize
+DrinksPanel "1" --> "1" DrinksListener
+DrinksPanel "1" --> "1" Order
+
+HomeScreenGUI "1" --> "*" OrderScreen
+
+@enduml
