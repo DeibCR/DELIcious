@@ -92,7 +92,9 @@ The Deli-cious POS System is a Point of Sale (POS) application designed for a sa
 This project was developed as part of the Multisite App Development program at Year Up United, where we aimed to design and implement a fully functional POS system tailored to a food service business. The application is built with Java swing, which provide a smooth and responsive user experience.
 
 ## Acknowledgments
-Special thanks to **Year Up United** for providing the opportunity to develop this project and for supporting the learning journey.
+Special thanks to 
+- **Year Up United** for providing the opportunity to develop this project and for supporting the learning journey.
+- **Paul Kimball** my instructor, for all the patience, all the annoying questions to answer and all the coffee ingested to endure them.
 
 ## Contact Information
 - Developer: **Deiber Villalobos**
